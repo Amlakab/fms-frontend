@@ -470,10 +470,10 @@ export default function LeaseAgreementModal({
               <CheckCircle sx={{ color: '#10b981', fontSize: 32 }} />
               <Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 800, color: '#10b981' }}>
-                  {language === 'am' ? 'የኪራይ ውሉ በይፋ ተቋርጧል — ቤቱ ለሌላ ኪራይ ክፍት ሆኗል' : 'Lease Agreement Terminated — Property is Available for Other Rent'}
+                  {language === 'am' ? 'የውል ስምምነቱ በይፋ ተቋርጧል — ምርቱ ለሌላ ትዕዛዝ ክፍት ሆኗል' : 'Supply Agreement Terminated — Product Inventory is Restored'}
                 </Typography>
                 <Typography variant="body2" sx={{ color: isDark ? '#cbd5e1' : '#475569' }}>
-                  {language === 'am' ? 'ይህ ውል ተቋርጧል፤ ቤቱ በሲስተሙ ላይ ወዲያውኑ ወደ "ክፍት (Available)" ተመልሷል።' : 'This contract was officially stopped. The property status is restored to "AVAILABLE" for other tenants.'}
+                  {language === 'am' ? 'ይህ ውል ተቋርጧል፤ ምርቱ በሲስተሙ ላይ ወዲያውኑ ወደ "ክፍት (Available)" ተመልሷል።' : 'This contract was officially closed. The product inventory status is restored to "AVAILABLE" for other clients.'}
                 </Typography>
                 {(localLease.terminationReason || localLease.terminationRequest?.reason) && (
                   <Typography variant="caption" sx={{ display: 'block', mt: 0.5, color: isDark ? '#94a3b8' : '#64748b' }}>
@@ -491,10 +491,10 @@ export default function LeaseAgreementModal({
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
             <Box>
               <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#38bdf8' : '#2563eb' }}>
-                {language === 'am' ? 'የኪራይ ውል ስምምነት' : 'HRMS TENANCY CONTRACT'}
+                {language === 'am' ? 'የግንባታ እቃዎች እና አቅርቦት ውል ስምምነት' : 'MAT ENGINEERING SUPPLY & SERVICE CONTRACT'}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                {language === 'am' ? 'መደበኛ የቤት ኪራይ ውል' : 'Standard Form Real Estate Lease Agreement'}
+                {language === 'am' ? 'ማት ኢንጂነሪንግ እና ትሬዲንግ ኃ/የተ/የግ/ማህበር' : 'MAT Engineering & Trading PLC Standard Agreement'}
               </Typography>
             </Box>
             <Chip
@@ -524,22 +524,22 @@ export default function LeaseAgreementModal({
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 3 }}>
             <Paper elevation={0} sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', border: `1px solid ${isDark ? '#233554' : '#e2e8f0'}`, borderRadius: 2 }}>
               <Typography variant="caption" sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontWeight: 700, textTransform: 'uppercase' }}>
-                {language === 'am' ? 'አከራይ / የንብረት ባለቤት' : 'Landlord / Property Owner'}
+                {language === 'am' ? 'አቅራቢ / የድርጅቱ ተወካይ' : 'Supplier / Authorized Representative'}
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 700, mt: 0.5, color: isDark ? '#f1f5f9' : '#0f172a' }}>
-                {lease.landlordId?.name || (language === 'am' ? 'የንብረት ባለቤት' : 'Property Owner')}
+                {lease.landlordId?.name || (language === 'am' ? 'ማት ኢንጂነሪንግ ኤንድ ትሬዲንግ ኃ/የተ/የግ/ማ' : 'MAT Engineering & Trading PLC')}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                Email: {lease.landlordId?.email || 'N/A'}
+                Email: {lease.landlordId?.email || 'sales@matengineering.et'}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                Phone: {lease.landlordId?.phone || 'N/A'}
+                Phone: {lease.landlordId?.phone || '0911 994 405'}
               </Typography>
             </Paper>
 
             <Paper elevation={0} sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', border: `1px solid ${isDark ? '#233554' : '#e2e8f0'}`, borderRadius: 2 }}>
               <Typography variant="caption" sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontWeight: 700, textTransform: 'uppercase' }}>
-                {language === 'am' ? 'ተከራይ' : 'Tenant / Resident'}
+                {language === 'am' ? 'ደንበኛ / ገዢ' : 'Client / Ordering Party'}
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 700, mt: 0.5, color: isDark ? '#f1f5f9' : '#0f172a' }}>
                 {lease.tenantName}

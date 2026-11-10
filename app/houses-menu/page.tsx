@@ -97,12 +97,16 @@ interface FilterOptions {
 }
 
 const houseTypes = [
-  { value: 'APARTMENT', label: 'Apartment' },
-  { value: 'VILLA', label: 'Villa' },
-  { value: 'CONDO', label: 'Condo' },
-  { value: 'STUDIO', label: 'Studio' },
-  { value: 'HOUSE', label: 'House' },
-  { value: 'TOWNHOUSE', label: 'Townhouse' }
+  { value: 'CONSTRUCTION_MATERIAL', label: 'Construction Materials' },
+  { value: 'STRUCTURAL_STEEL', label: 'Structural Steel Rebar' },
+  { value: 'CEMENT_CONCRETE', label: 'Cement & Concrete' },
+  { value: 'HOLLOW_BLOCKS', label: 'Hollow Concrete Blocks' },
+  { value: 'ROOFING_SHEETS', label: 'Galvanized Roofing Sheets' },
+  { value: 'HOME_FURNITURE', label: 'Home Furniture' },
+  { value: 'OFFICE_FURNITURE', label: 'Office Furniture' },
+  { value: 'STEEL_FABRICATION', label: 'Steel Fabrication & Trusses' },
+  { value: 'GENERAL_CONTRACTING', label: 'General Contracting' },
+  { value: 'CUSTOM_ORDER', label: 'Custom Orders' }
 ];
 
 const furnishingOptions = [
@@ -349,7 +353,7 @@ const PublicHousePage = () => {
     try {
       // Here you would send the message to your backend
       console.log('Message sent:', { houseId: selectedHouse._id, ...messageForm });
-      setSuccess(`Message sent to property owner! They'll get back to you soon.`);
+      setSuccess(`Message sent to Sales Staff! They'll get back to you soon.`);
       setOpenMessageDialog(false);
       resetMessageForm();
     } catch (error: any) {
@@ -532,7 +536,7 @@ const PublicHousePage = () => {
                     mb: 2,
                     color: theme === 'dark' ? '#00ffff' : '#007bff'
                   }}>
-                    Find Your Dream Home
+                    MAT Engineering & Trading PLC
                   </Typography>
                   <Typography variant="body1" sx={{ 
                     color: theme === 'dark' ? '#a8b2d1' : '#666666',
@@ -540,13 +544,13 @@ const PublicHousePage = () => {
                     fontSize: '1.1rem',
                     lineHeight: 1.6
                   }}>
-                    Discover the perfect rental property that suits your lifestyle and budget. 
-                    Browse through our curated collection of houses, apartments, and villas in prime locations.
+                    Certified construction materials, bespoke home & office furniture, and specialized steel fabrication.
+                    Choose 100% full payment or 25% advance milestone with live tracking from production to handover.
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                    <Chip icon={<LocationOn />} label="Prime Locations" />
-                    <Chip icon={<AttachMoney />} label="Best Prices" />
-                    <Chip icon={<Home />} label="Verified Properties" />
+                    <Chip icon={<LocationOn />} label="Factory & Addis Showroom" />
+                    <Chip icon={<AttachMoney />} label="25% Advance Milestone" />
+                    <Chip icon={<Home />} label="Certified Materials" />
                   </Box>
                 </motion.div>
               </Box>
@@ -566,24 +570,24 @@ const PublicHousePage = () => {
                       : '0 4px 12px rgba(0,0,0,0.08)'
                   }}>
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                      Why Choose Us?
+                      Why Choose MAT Engineering?
                     </Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <CheckCircle sx={{ color: theme === 'dark' ? '#00ff00' : '#28a745' }} />
-                        <Typography variant="body2">100% Verified Properties</Typography>
+                        <Typography variant="body2">100% Quality Tested & Certified</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <CheckCircle sx={{ color: theme === 'dark' ? '#00ff00' : '#28a745' }} />
-                        <Typography variant="body2">No Hidden Fees</Typography>
+                        <Typography variant="body2">Flexible 25% Advance Terms</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <CheckCircle sx={{ color: theme === 'dark' ? '#00ff00' : '#28a745' }} />
-                        <Typography variant="body2">24/7 Customer Support</Typography>
+                        <Typography variant="body2">Dedicated Sales Staff & Engineering Support</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <CheckCircle sx={{ color: theme === 'dark' ? '#00ff00' : '#28a745' }} />
-                        <Typography variant="body2">Easy Application Process</Typography>
+                        <Typography variant="body2">Real-time Order & Production Tracking</Typography>
                       </Box>
                     </Box>
                   </Card>
@@ -674,11 +678,11 @@ const PublicHousePage = () => {
                   </Select>
                 </FormControl>
                 
-                <FormControl size="small" sx={{ flex: 1, minWidth: '120px' }}>
-                  <InputLabel>Bedrooms</InputLabel>
+                <FormControl size="small" sx={{ flex: 1, minWidth: '140px' }}>
+                  <InputLabel>Delivery Time</InputLabel>
                   <Select
                     value={filters.bedrooms}
-                    label="Bedrooms"
+                    label="Delivery Time"
                     onChange={(e) => handleFilterChange('bedrooms', e.target.value)}
                     sx={{
                       backgroundColor: theme === 'dark' ? '#1e293b' : 'white',
@@ -687,10 +691,10 @@ const PublicHousePage = () => {
                       }
                     }}
                   >
-                    <MenuItem value="">Any</MenuItem>
-                    {filterOptions.bedrooms.map(bed => (
-                      <MenuItem key={bed} value={bed}>{bed}+ Bedroom{bed !== 1 ? 's' : ''}</MenuItem>
-                    ))}
+                    <MenuItem value="">Any Lead Time</MenuItem>
+                    <MenuItem value="1">Immediate Dispatch</MenuItem>
+                    <MenuItem value="2">1–3 Business Days</MenuItem>
+                    <MenuItem value="3">3–7 Business Days</MenuItem>
                   </Select>
                 </FormControl>
                 
@@ -749,7 +753,7 @@ const PublicHousePage = () => {
             <Box sx={{ maxWidth: '1200px', mx: 'auto' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', color: theme === 'dark' ? '#00ffff' : '#007bff' }}>
-                  All Properties
+                  All Engineering Products & Materials
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1 }}>
                   <IconButton onClick={() => scrollHorizontalList('left')} size="small">
@@ -967,7 +971,7 @@ const PublicHousePage = () => {
                                 color: theme === 'dark' ? '#00ffff' : '#007bff',
                                 mb: 1
                               }}>
-                                {formatPrice(house.price)}/month
+                                {formatPrice(house.price)}
                               </Typography>
                               
                               <Box sx={{ 
@@ -979,17 +983,9 @@ const PublicHousePage = () => {
                                 borderBottom: 1,
                                 borderColor: theme === 'dark' ? '#334155' : '#e5e7eb'
                               }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                  <Bed sx={{ fontSize: 16 }} />
-                                  <Typography variant="caption">{house.bedrooms} Bed</Typography>
-                                </Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                  <Bathtub sx={{ fontSize: 16 }} />
-                                  <Typography variant="caption">{house.bathrooms} Bath</Typography>
-                                </Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                  <SquareFoot sx={{ fontSize: 16 }} />
-                                  <Typography variant="caption">{house.area} sqft</Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                  <Chip size="small" variant="outlined" label="MAT Verified" sx={{ fontSize: 11, fontWeight: 700 }} />
+                                  <Typography variant="caption" sx={{ fontWeight: 600 }}>{house.area ? `${house.area} m²` : 'Factory Spec'}</Typography>
                                 </Box>
                               </Box>
                               
@@ -1117,7 +1113,7 @@ const PublicHousePage = () => {
               justifyContent: 'space-between',
               alignItems: 'center'
             }}>
-              <Typography variant="h6">Property Details</Typography>
+              <Typography variant="h6">Product & Technical Specifications</Typography>
               <IconButton onClick={() => setOpenViewDialog(false)} size="small">
                 <Close />
               </IconButton>
@@ -1203,30 +1199,28 @@ const PublicHousePage = () => {
                       <Divider sx={{ mb: 2 }} />
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Bed sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
                           <Box>
-                            <Typography variant="caption">Bedrooms</Typography>
-                            <Typography variant="body1">{selectedHouse.bedrooms}</Typography>
+                            <Typography variant="caption">Standard Spec</Typography>
+                            <Typography variant="body1">Certified Industrial Grade</Typography>
                           </Box>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Bathtub sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
                           <Box>
-                            <Typography variant="caption">Bathrooms</Typography>
-                            <Typography variant="body1">{selectedHouse.bathrooms}</Typography>
+                            <Typography variant="caption">Payment Plan</Typography>
+                            <Typography variant="body1" sx={{ color: '#10b981', fontWeight: 700 }}>25% Advance / 75% Final</Typography>
                           </Box>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <SquareFoot sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
                           <Box>
-                            <Typography variant="caption">Area</Typography>
-                            <Typography variant="body1">{selectedHouse.area} sqft</Typography>
+                            <Typography variant="caption">Dimensions / Area</Typography>
+                            <Typography variant="body1">{selectedHouse.area} m²</Typography>
                           </Box>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <Home sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
                           <Box>
-                            <Typography variant="caption">Property Type</Typography>
+                            <Typography variant="caption">Product Category</Typography>
                             <Typography variant="body1">{getHouseTypeLabel(selectedHouse.type)}</Typography>
                           </Box>
                         </Box>
@@ -1480,9 +1474,9 @@ const PublicHousePage = () => {
               borderColor: theme === 'dark' ? '#334155' : '#e5e7eb',
               py: 2
             }}>
-              <Typography variant="h6">Apply for {selectedHouse.title}</Typography>
+              <Typography variant="h6">Order & Supply Request for {selectedHouse.title}</Typography>
               <Typography variant="caption" sx={{ color: theme === 'dark' ? '#a8b2d1' : '#666666' }}>
-                {formatPrice(selectedHouse.price)}/month • {selectedHouse.bedrooms} Bed • {selectedHouse.bathrooms} Bath
+                Unit Price: {formatPrice(selectedHouse.price)} • 25% Advance: {formatPrice(selectedHouse.price * 0.25)}
               </Typography>
             </DialogTitle>
             
@@ -1587,15 +1581,15 @@ const PublicHousePage = () => {
                   </Box>
                 </Box>
 
-                {/* Rental Details */}
+                {/* Delivery & Quantity Requirements */}
                 <Box>
                   <Typography variant="subtitle1" sx={{ mb: 2, fontWeight: 'bold', color: theme === 'dark' ? '#00ffff' : '#007bff' }}>
-                    Rental Details
+                    Delivery & Quantity Requirements
                   </Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <TextField
                       fullWidth
-                      label="Number of Occupants"
+                      label="Required Quantity / Units"
                       type="number"
                       value={applicationForm.numberOfOccupants}
                       onChange={(e) => setApplicationForm(prev => ({ ...prev, numberOfOccupants: parseInt(e.target.value) || 1 }))}
@@ -1611,7 +1605,7 @@ const PublicHousePage = () => {
                     />
                     <TextField
                       fullWidth
-                      label="Preferred Move-in Date"
+                      label="Target Handover / Delivery Date"
                       type="date"
                       value={applicationForm.preferredMoveInDate}
                       onChange={(e) => setApplicationForm(prev => ({ ...prev, preferredMoveInDate: e.target.value }))}

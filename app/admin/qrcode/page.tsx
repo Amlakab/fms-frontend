@@ -79,7 +79,7 @@ export default function QRPage() {
         </head>
         <body>
           <div class="qr-wrapper">
-            <h2>${isAmharic ? 'ሪል እስቴት መድረክ' : 'Real Estate Platform'}</h2>
+            <h2>${isAmharic ? 'ማት ኢንጂነሪንግ እና ትሬዲንግ ኃ/የተ/የግ/ማህበር' : 'MAT Engineering & Trading PLC'}</h2>
             <img src="${dataUrl}" style="width:240px; height:240px; display:block; margin:0 auto;" />
             <p>${targetUrl}</p>
           </div>

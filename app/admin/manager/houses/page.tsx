@@ -514,16 +514,10 @@ const HouseReviewPage = () => {
                           </Box>
                           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                              <Bed sx={{ fontSize: 14, color: isDark ? '#94a3b8' : '#64748b' }} />
-                              <Typography variant="body2" sx={{ color: isDark ? '#f1f5f9' : '#0f172a', fontWeight: 600 }}>{house.details.bedrooms}</Typography>
+                              <Typography variant="body2" sx={{ color: isDark ? '#f1f5f9' : '#0f172a', fontWeight: 600 }}>{house.productAttributes?.material || propertyTypeLabels[house.propertyType] || 'Certified Material'}</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                              <Bathtub sx={{ fontSize: 14, color: isDark ? '#94a3b8' : '#64748b' }} />
-                              <Typography variant="body2" sx={{ color: isDark ? '#f1f5f9' : '#0f172a', fontWeight: 600 }}>{house.details.bathrooms}</Typography>
-                            </Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                              <SquareFoot sx={{ fontSize: 14, color: isDark ? '#94a3b8' : '#64748b' }} />
-                              <Typography variant="body2" sx={{ color: isDark ? '#f1f5f9' : '#0f172a', fontWeight: 600 }}>{house.details.area.toLocaleString()} m²</Typography>
+                              <Typography variant="body2" sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontWeight: 600 }}>25% Adv: {formatPrice(house.pricing.price * 0.25)}</Typography>
                             </Box>
                           </Box>
                           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
@@ -667,7 +661,7 @@ const HouseReviewPage = () => {
                             <Box>
                               <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#f1f5f9' : '#0f172a' }}>{house.title}</Typography>
                               <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                                {house.details.bedrooms} {isAmharic ? 'መኝታ' : 'beds'} • {house.details.bathrooms} {isAmharic ? 'መታጠቢያ' : 'baths'} • {house.details.area} m²
+                                {propertyTypeLabels[house.propertyType] || 'MAT Engineering'} • 25% Adv: {formatPrice(house.pricing.price * 0.25)}
                               </Typography>
                             </Box>
                           </Box>
@@ -681,7 +675,7 @@ const HouseReviewPage = () => {
                           <Typography variant="body2" sx={{ fontWeight: 'bold', color: isDark ? '#38bdf8' : '#2563eb' }}>{formatPrice(house.pricing.price)}</Typography>
                         </Box>
                         <Box component="td" sx={{ p: 2 }}>
-                          <Chip label={`${house.pricing?.quantity || 1} ${isAmharic ? 'ቤቶች' : 'units'}`} size="small" icon={<Inventory sx={{ fontSize: '13px !important' }} />} sx={{ fontWeight: 600, fontSize: 11 }} />
+                          <Chip label={`${house.pricing?.quantity || 1} ${isAmharic ? 'ምርቶች' : 'units'}`} size="small" icon={<Inventory sx={{ fontSize: '13px !important' }} />} sx={{ fontWeight: 600, fontSize: 11 }} />
                         </Box>
                         <Box component="td" sx={{ p: 2 }}>
                           <Chip 
@@ -825,24 +819,24 @@ const HouseReviewPage = () => {
                     <Typography variant="h6" sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontWeight: 800 }}>{formatPrice(selectedHouse.pricing.price)}</Typography>
                   </Box>
                   <Box sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', borderRadius: 2.5, border: '1px solid', borderColor: isDark ? '#233554' : '#e2e8f0' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'የሚገኙ ቤቶች ብዛት' : 'Units Available'}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.pricing?.quantity || 1}</Typography>
+                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'የሚገኝ ክምችት' : 'In-Stock Inventory'}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.pricing?.quantity || 1} units</Typography>
                   </Box>
                   <Box sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', borderRadius: 2.5, border: '1px solid', borderColor: isDark ? '#233554' : '#e2e8f0' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'መኝታ ቤቶች' : 'Bedrooms'}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.details.bedrooms}</Typography>
+                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? '25% ቅድመ ክፍያ' : '25% Advance Milestone'}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#10b981' }}>{formatPrice(selectedHouse.pricing.price * 0.25)}</Typography>
                   </Box>
                   <Box sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', borderRadius: 2.5, border: '1px solid', borderColor: isDark ? '#233554' : '#e2e8f0' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'መታጠቢያ ቤቶች' : 'Bathrooms'}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.details.bathrooms}</Typography>
+                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'የቀሪ 75% ክፍያ (ርክክብ)' : '75% Final on Handover'}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#38bdf8' : '#2563eb' }}>{formatPrice(selectedHouse.pricing.price * 0.75)}</Typography>
                   </Box>
                   <Box sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', borderRadius: 2.5, border: '1px solid', borderColor: isDark ? '#233554' : '#e2e8f0' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'ስፋት' : 'Area'}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.details.area.toLocaleString()} m²</Typography>
+                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'የማድረሻ ጊዜ' : 'Delivery Lead Time'}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>3–7 Days</Typography>
                   </Box>
                   <Box sx={{ p: 2, bgcolor: isDark ? '#0a192f' : '#f8fafc', borderRadius: 2.5, border: '1px solid', borderColor: isDark ? '#233554' : '#e2e8f0' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'የተገነባበት ዓመት' : 'Year Built'}</Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>{selectedHouse.details.yearBuilt || (isAmharic ? 'አልተጠቀሰም' : 'N/A')}</Typography>
+                    <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>{isAmharic ? 'ጥሬ ዕቃ / ስፔስፊኬሽን' : 'Material Spec'}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>MAT Certified</Typography>
                   </Box>
                 </Box>
 

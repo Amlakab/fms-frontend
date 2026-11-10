@@ -119,8 +119,8 @@ export interface Location {
 }
 
 export interface HouseDetails {
-  bedrooms: number;
-  bathrooms: number;
+  bedrooms?: number;
+  bathrooms?: number;
   area: number;
   lotSize: number;
   yearBuilt: number;

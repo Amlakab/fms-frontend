@@ -91,7 +91,7 @@ export default function ReportListingModal({
           <Flag sx={{ color: '#f43f5e', fontSize: 26 }} />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 700 }}>
-              Report Suspicious or Inaccurate Listing
+              Report Inaccurate Product or Specification Details
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               {house.title}
@@ -116,11 +116,11 @@ export default function ReportListingModal({
               onChange={(e) => setReason(e.target.value)}
             >
               <MenuItem value="MISLEADING_PRICE">Incorrect or Deceptive Price Listed</MenuItem>
-              <MenuItem value="FAKE_PHOTOS">Fake, Copied, or Inaccurate Photos</MenuItem>
-              <MenuItem value="ALREADY_SOLD_OR_RENTED">Property is Already Sold / Occupied</MenuItem>
+              <MenuItem value="FAKE_PHOTOS">Fake or Inaccurate Product Photos</MenuItem>
+              <MenuItem value="ALREADY_SOLD_OR_RENTED">Item Discontinued or Out of Stock</MenuItem>
               <MenuItem value="FRAUD_SCAM">Potential Scam / Unauthorized Seller</MenuItem>
-              <MenuItem value="INCORRECT_LOCATION">Wrong Location / Fake Coordinates</MenuItem>
-              <MenuItem value="OTHER">Other Community Policy Violation</MenuItem>
+              <MenuItem value="INCORRECT_LOCATION">Wrong Delivery / Factory Location</MenuItem>
+              <MenuItem value="OTHER">Other MAT Engineering Quality Policy Violation</MenuItem>
             </Select>
           </FormControl>
 
@@ -130,7 +130,7 @@ export default function ReportListingModal({
             rows={4}
             required
             fullWidth
-            placeholder="Please describe why this listing is misleading or suspicious with as much detail as possible..."
+            placeholder="Please describe why this product listing is misleading or inaccurate with as much detail as possible..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />

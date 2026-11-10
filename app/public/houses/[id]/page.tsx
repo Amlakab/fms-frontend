@@ -490,7 +490,7 @@ export default function PublicHouseDetailPage() {
                 { 
                   icon: <Build fontSize="small" sx={{ color: '#06b6d4' }} />, 
                   label: isAmharic ? 'ጥሬ እቃ / ደረጃ' : 'Material & Grade', 
-                  val: [house.productAttributes?.material, house.productAttributes?.grade].filter(Boolean).join(' - ') || (house.details?.bedrooms ? `${house.details.bedrooms} Beds` : 'Certified Quality')
+                  val: [house.productAttributes?.material, house.productAttributes?.grade].filter(Boolean).join(' - ') || 'Certified Quality'
                 },
                 { 
                   icon: <Scale fontSize="small" sx={{ color: '#06b6d4' }} />, 

@@ -6,8 +6,8 @@ import { LanguageProvider } from "@/lib/language-context";
 import { AuthProvider } from "@/lib/auth";
 
 export const metadata: Metadata = {
-  title: "House Selling Management System | RealEstate Pro",
-  description: "Official real estate marketplace and house selling management system.",
+  title: "MAT Engineering & Trading PLC | Construction Materials, Furniture & Steel Fabrication",
+  description: "Official portal for MAT Engineering & Trading PLC. Premium construction materials, home & office furniture, custom steel fabrication and contracting.",
 };
 
 export default function RootLayout({

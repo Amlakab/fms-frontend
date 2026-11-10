@@ -108,7 +108,7 @@ export default function AppointmentModal({
         notes
       });
 
-      setSuccess(language === 'am' ? 'የጉብኝት ቀጠሮ ጥያቄ በተሳካ ሁኔታ ተልኳል!' : 'Viewing appointment request submitted successfully!');
+      setSuccess(language === 'am' ? 'የጉብኝት እና የምክር ቀጠሮ ጥያቄ በተሳካ ሁኔታ ተልኳል!' : 'Showroom/factory visit & consultation request submitted successfully!');
       setTimeout(() => {
         onSuccess?.();
         onClose();
@@ -142,7 +142,7 @@ export default function AppointmentModal({
           <CalendarMonth sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontSize: 28 }} />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>
-              {t('appointment.title', 'Schedule a Property Viewing')}
+              {t('appointment.title', 'Schedule Showroom / Factory Visit & Consultation')}
             </Typography>
             <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
               {house.title}
@@ -162,7 +162,7 @@ export default function AppointmentModal({
           {/* Visit Type */}
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: isDark ? '#f1f5f9' : '#0f172a' }}>
-              {t('appointment.type', 'Viewing Mode')}
+              {t('appointment.type', 'Consultation & Visit Mode')}
             </Typography>
             <RadioGroup
               row
@@ -177,7 +177,7 @@ export default function AppointmentModal({
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <LocationOn fontSize="small" sx={{ color: isDark ? '#38bdf8' : '#2563eb' }} />
                     <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#f1f5f9' : '#0f172a' }}>
-                      {t('appointment.in_person', 'In-Person Physical Visit')}
+                      {t('appointment.in_person', 'In-Person Factory / Showroom Visit')}
                     </Typography>
                   </Box>
                 }
@@ -189,7 +189,7 @@ export default function AppointmentModal({
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <VideoCameraFront fontSize="small" sx={{ color: '#a855f7' }} />
                     <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#f1f5f9' : '#0f172a' }}>
-                      {t('appointment.virtual', 'Live Video Tour (Virtual)')}
+                      {t('appointment.virtual', 'Virtual Technical Consultation & Demo')}
                     </Typography>
                   </Box>
                 }
@@ -231,7 +231,7 @@ export default function AppointmentModal({
 
           {/* Number of Visitors */}
           <TextField
-            label={t('appointment.visitors', 'Number of Attendees')}
+            label={t('appointment.visitors', 'Number of Company Delegates / Attendees')}
             type="number"
             fullWidth
             value={numberOfVisitors}
@@ -242,11 +242,11 @@ export default function AppointmentModal({
 
           {/* Additional Notes */}
           <TextField
-            label={t('appointment.notes', 'Special Inquiries or Questions for Agent')}
+            label={t('appointment.notes', 'Technical Requirements / Inquiries for Sales Staff')}
             multiline
             rows={3}
             fullWidth
-            placeholder={language === 'am' ? 'ለምሳሌ፡ ስለ ውል ጅምር፣ የመኪና ማቆሚያ፣ ወይም የአካባቢ ትምህርት ቤቶች መጠየቅ።' : 'e.g. Inquiring about lease start date, parking spaces, or neighborhood schools.'}
+            placeholder={language === 'am' ? 'ለምሳሌ፡ ስለ ዕቃዎች ስፔስፊኬሽን፣ ማድረሻ ጊዜ፣ ወይም የ25% ቅድመ ክፍያ መጠየቅ።' : 'e.g. Inquiring about material grade, bulk quantity discounts, delivery lead times, or 25% advance payment.'}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             sx={textFieldStyle}

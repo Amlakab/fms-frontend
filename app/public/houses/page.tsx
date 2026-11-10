@@ -29,13 +29,16 @@ import PropertyCompareModal from '@/components/PropertyCompareModal';
 import Link from 'next/link';
 
 const popularTags = [
-  'Bole', 'Furnished', 'Luxury', 'FamilyHome', 'CMC', 'OfficeSpace',
-  'Garden', 'Penthouse', 'NearAirport', 'Parking', 'TitleDeed'
+  'Grade60Rebar', 'PPCCement', 'HCBBlocks', 'RoofingSheets',
+  'ExecutiveDesk', 'ErgonomicChair', 'LivingRoomSofa', 'SteelTruss',
+  'CustomFabrication', '25PercentAdvance', 'ImmediateDelivery'
 ];
 
 const availableAmenities = [
-  'Parking', 'Security System', 'High Speed Wifi', 'Swimming Pool',
-  'Fitness Center / Gym', 'Backup Generator', 'Water Reservoir', 'Elevator'
+  'ASTM A615 Grade 60 Certified', 'ISO 9001 Quality Assured',
+  '25% Advance Partial Payment Plan', 'Direct Price Negotiation',
+  'Showroom Sample Available', 'Custom Fabrication Available',
+  'Immediate Factory Stock', '1 Year Quality Warranty'
 ];
 
 export default function PublicHousesPage() {
@@ -267,16 +270,16 @@ export default function PublicHousesPage() {
         {/* Hero & Discovery Search Header */}
         <Box sx={{ py: 2, mb: 2 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: 'text.primary', mb: 1, letterSpacing: -0.5, fontSize: { xs: '1.75rem', sm: '2.25rem' } }}>
-            {isAmharic ? 'የተረጋገጡ ቤቶች እና ሕንፃዎችን ያስሱ' : 'Explore Verified Real Estate'}
+            {isAmharic ? 'የማት ኢንጂነሪንግ የምርት ካታሎግ እና አቅርቦት' : 'MAT Engineering Product Catalog & Supply'}
           </Typography>
           <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: 760, fontSize: { xs: '0.9rem', sm: '1rem' } }}>
             {isAmharic
-              ? 'በኢትዮጵያ ውስጥ ምርጥ አፓርታማዎችን፣ ቪላዎችን፣ ቢሮዎችን እና የመሬት ይዞታዎችን በ 360° ምናባዊ እይታ እና ማወዳደሪያ አማካኝነት ያግኙ።'
-              : 'Discover apartments, villas, commercial offices, industrial warehouses, and development land across Ethiopia with interactive 3D, 360° virtual tours, and side-by-side comparison.'}
+              ? 'ጥራት ያላቸው መዋቅራዊ ብረት፣ ሲሚንቶ፣ ብሎኬት፣ የቢሮ እና ቤት ፈርኒቸር እንዲሁም የብረት ፋብሪኬሽን ስራዎችን በ25% ቅድመ ክፍያ እና ቀጥታ የዋጋ ድርድር ያግኙ።'
+              : 'Discover certified structural steel, concrete materials, hollow blocks, executive furniture, and custom steel fabrication solutions with 25% advance payment options and direct price negotiation.'}
           </Typography>
         </Box>
 
-        {/* Transaction Type Tabs Bar */}
+        {/* Product Category Tabs Bar */}
         <Box sx={{
           display: 'flex',
           alignItems: 'center',
@@ -289,15 +292,18 @@ export default function PublicHousesPage() {
           '&::-webkit-scrollbar': { display: 'none' }
         }}>
           {[
-            { label: isAmharic ? 'ሁሉም ቤቶች' : 'All Listings', value: '' },
-            { label: isAmharic ? 'የሚከራዩ' : 'For Rent', value: 'RENT' },
-            { label: isAmharic ? 'የሚሸጡ' : 'For Sale', value: 'BUY' },
-            { label: isAmharic ? 'የአጭር ጊዜ ቆይታ' : 'Short Stay & Furnished', value: 'SHORT_STAY' }
+            { label: isAmharic ? 'ሁሉም ምርቶች' : 'All Products', value: '' },
+            { label: isAmharic ? 'የግንባታ እቃዎች' : 'Construction Materials', value: 'CONSTRUCTION_MATERIAL' },
+            { label: isAmharic ? 'መዋቅራዊ ብረት' : 'Structural Steel', value: 'STRUCTURAL_STEEL' },
+            { label: isAmharic ? 'የቢሮ ፈርኒቸር' : 'Office Furniture', value: 'OFFICE_FURNITURE' },
+            { label: isAmharic ? 'የቤት ፈርኒቸር' : 'Home Furniture', value: 'HOME_FURNITURE' },
+            { label: isAmharic ? 'የብረት ፋብሪኬሽን' : 'Steel Fabrication', value: 'STEEL_FABRICATION' },
+            { label: isAmharic ? 'ልዩ ትዕዛዝ' : 'Custom Orders', value: 'CUSTOM_ORDER' }
           ].map((tab) => (
             <Button
               key={tab.value}
-              onClick={() => handleFilterChange('transactionType', tab.value)}
-              variant={filters.transactionType === tab.value ? 'contained' : 'outlined'}
+              onClick={() => handleFilterChange('propertyType', tab.value)}
+              variant={filters.propertyType === tab.value ? 'contained' : 'outlined'}
               size="small"
               sx={{
                 borderRadius: 2.5,
@@ -308,11 +314,11 @@ export default function PublicHousesPage() {
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
                 fontSize: { xs: 12, sm: 13 },
-                bgcolor: filters.transactionType === tab.value ? 'primary.main' : 'transparent',
-                borderColor: filters.transactionType === tab.value ? 'primary.main' : 'divider',
-                color: filters.transactionType === tab.value ? 'white' : 'text.primary',
+                bgcolor: filters.propertyType === tab.value ? 'primary.main' : 'transparent',
+                borderColor: filters.propertyType === tab.value ? 'primary.main' : 'divider',
+                color: filters.propertyType === tab.value ? 'white' : 'text.primary',
                 '&:hover': {
-                  bgcolor: filters.transactionType === tab.value ? 'primary.dark' : 'action.hover'
+                  bgcolor: filters.propertyType === tab.value ? 'primary.dark' : 'action.hover'
                 }
               }}
             >
@@ -408,11 +414,16 @@ export default function PublicHousesPage() {
                   onChange={(e) => handleFilterChange('propertyType', e.target.value)}
                 >
                   <MenuItem value="">{isAmharic ? 'ሁሉም ዓይነቶች' : 'All Categories'}</MenuItem>
-                  <MenuItem value="APARTMENT">{isAmharic ? 'አፓርታማ' : 'Apartments'}</MenuItem>
-                  <MenuItem value="VILLA">{isAmharic ? 'ቪላ እና ቤቶች' : 'Villas & Houses'}</MenuItem>
-                  <MenuItem value="OFFICE">{isAmharic ? 'የንግድ ቢሮዎች' : 'Commercial Offices'}</MenuItem>
-                  <MenuItem value="WAREHOUSE">{isAmharic ? 'መጋዘኖች' : 'Warehouses & Storage'}</MenuItem>
-                  <MenuItem value="LAND">{isAmharic ? 'የልማት መሬት' : 'Development Land'}</MenuItem>
+                  <MenuItem value="CONSTRUCTION_MATERIAL">{isAmharic ? 'የግንባታ እቃዎች' : 'Construction Materials'}</MenuItem>
+                  <MenuItem value="STRUCTURAL_STEEL">{isAmharic ? 'መዋቅራዊ ብረት (Rebar)' : 'Structural Steel'}</MenuItem>
+                  <MenuItem value="CEMENT_CONCRETE">{isAmharic ? 'ሲሚንቶ እና ኮንክሪት' : 'Cement & Concrete'}</MenuItem>
+                  <MenuItem value="HOLLOW_BLOCKS">{isAmharic ? 'ብሎኬት (HCB)' : 'Hollow Concrete Blocks'}</MenuItem>
+                  <MenuItem value="ROOFING_SHEETS">{isAmharic ? 'የቆርቆሮ ክዳን' : 'Roofing Sheets'}</MenuItem>
+                  <MenuItem value="OFFICE_FURNITURE">{isAmharic ? 'የቢሮ ፈርኒቸር' : 'Office Furniture'}</MenuItem>
+                  <MenuItem value="HOME_FURNITURE">{isAmharic ? 'የቤት ፈርኒቸር' : 'Home Furniture'}</MenuItem>
+                  <MenuItem value="STEEL_FABRICATION">{isAmharic ? 'የብረት ፋብሪኬሽን' : 'Steel Fabrication'}</MenuItem>
+                  <MenuItem value="GENERAL_CONTRACTING">{isAmharic ? 'ጠቅላላ ኮንትራክቲንግ' : 'General Contracting'}</MenuItem>
+                  <MenuItem value="CUSTOM_ORDER">{isAmharic ? 'ልዩ ትዕዛዝ' : 'Custom Orders'}</MenuItem>
                 </Select>
               </FormControl>
 
@@ -657,9 +668,9 @@ export default function PublicHousesPage() {
                     }}>
                       <Chip
                         size="small"
-                        label={house.transactionType === 'BUY' ? (isAmharic ? 'ሽያጭ' : 'FOR SALE') : (isAmharic ? 'ኪራይ' : 'FOR RENT')}
+                        label={isAmharic ? 'የማት ኢንጂነሪንግ ምርት' : 'MAT Product'}
                         sx={{
-                          bgcolor: house.transactionType === 'BUY' ? 'success.main' : 'primary.main',
+                          bgcolor: 'primary.main',
                           color: 'white',
                           fontWeight: 700,
                           fontSize: 11
@@ -747,12 +758,12 @@ export default function PublicHousesPage() {
                       {house.title}
                     </Typography>
 
-                    {/* Specs Row */}
+                    {/* Engineering Specs Row */}
                     <Box sx={{
                       display: 'flex',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      columnGap: 2,
+                      columnGap: 1.5,
                       rowGap: 0.8,
                       mb: 2,
                       py: 1,
@@ -760,28 +771,20 @@ export default function PublicHousesPage() {
                       borderBottom: '1px solid',
                       borderColor: 'divider'
                     }}>
-                      {house.details.bedrooms > 0 && (
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <Bed sx={{ fontSize: 16, color: 'text.secondary' }} />
-                          <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.primary', fontSize: { xs: 11.5, sm: 12 } }}>
-                            {house.details.bedrooms} {isAmharic ? 'መኝታ' : 'Beds'}
-                          </Typography>
-                        </Box>
-                      )}
-                      {house.details.bathrooms > 0 && (
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <Bathtub sx={{ fontSize: 16, color: 'text.secondary' }} />
-                          <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.primary', fontSize: { xs: 11.5, sm: 12 } }}>
-                            {house.details.bathrooms} {isAmharic ? 'መታጠቢያ' : 'Baths'}
-                          </Typography>
-                        </Box>
-                      )}
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <SquareFoot sx={{ fontSize: 16, color: 'text.secondary' }} />
-                        <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.primary', fontSize: { xs: 11.5, sm: 12 } }}>
-                          {house.details.area} m²
+                      <Chip
+                        size="small"
+                        variant="outlined"
+                        label={house.productAttributes?.sku ? `SKU: ${house.productAttributes.sku}` : 'MAT Verified'}
+                        sx={{ fontSize: 11, fontWeight: 700 }}
+                      />
+                      <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: 12 }}>
+                        {house.productAttributes?.material || house.productAttributes?.grade || 'Certified Spec'}
+                      </Typography>
+                      {house.productAttributes?.leadTime && (
+                        <Typography variant="caption" sx={{ fontWeight: 600, color: 'info.main', fontSize: 11.5 }}>
+                          • {house.productAttributes.leadTime}
                         </Typography>
-                      </Box>
+                      )}
                     </Box>
 
                     {/* Price & Action Button */}
@@ -810,9 +813,9 @@ export default function PublicHousesPage() {
                           }}
                         >
                           {formatPrice(house.pricing.price)}
-                          <Typography component="span" sx={{ fontSize: 11, color: 'text.secondary', ml: 0.5 }}>
-                            {house.transactionType === 'RENT' ? (isAmharic ? '/ወር' : '/ mo') : ''}
-                          </Typography>
+                        </Typography>
+                        <Typography variant="caption" sx={{ display: 'block', color: 'success.main', fontWeight: 600, fontSize: 11 }}>
+                          {isAmharic ? 'የ25% ቅድመ ክፍያ፡' : '25% Advance:'} ETB {(house.pricing.price * 0.25).toLocaleString()}
                         </Typography>
                       </Box>
 
@@ -947,35 +950,19 @@ export default function PublicHousesPage() {
             </Box>
           </Box>
 
-          {/* Bedrooms */}
+          {/* Production & Delivery Lead Time */}
           <FormControl fullWidth size="small">
-            <InputLabel>{isAmharic ? 'አነስተኛ መኝታ ክፍሎች' : 'Min Bedrooms'}</InputLabel>
+            <InputLabel>{isAmharic ? 'የማድረሻ ጊዜ' : 'Delivery / Lead Time'}</InputLabel>
             <Select
               value={filters.minBedrooms}
-              label={isAmharic ? 'አነስተኛ መኝታ ክፍሎች' : 'Min Bedrooms'}
+              label={isAmharic ? 'የማድረሻ ጊዜ' : 'Delivery / Lead Time'}
               onChange={(e) => handleFilterChange('minBedrooms', e.target.value)}
             >
               <MenuItem value={0}>{isAmharic ? 'ማናቸውም' : 'Any'}</MenuItem>
-              <MenuItem value={1}>1+ {isAmharic ? 'ክፍል' : 'Bed'}</MenuItem>
-              <MenuItem value={2}>2+ {isAmharic ? 'ክፍሎች' : 'Beds'}</MenuItem>
-              <MenuItem value={3}>3+ {isAmharic ? 'ክፍሎች' : 'Beds'}</MenuItem>
-              <MenuItem value={4}>4+ {isAmharic ? 'ክፍሎች' : 'Beds'}</MenuItem>
-              <MenuItem value={5}>5+ {isAmharic ? 'ክፍሎች' : 'Beds'}</MenuItem>
-            </Select>
-          </FormControl>
-
-          {/* Bathrooms */}
-          <FormControl fullWidth size="small">
-            <InputLabel>{isAmharic ? 'አነስተኛ መታጠቢያ ክፍሎች' : 'Min Bathrooms'}</InputLabel>
-            <Select
-              value={filters.minBathrooms}
-              label={isAmharic ? 'አነስተኛ መታጠቢያ ክፍሎች' : 'Min Bathrooms'}
-              onChange={(e) => handleFilterChange('minBathrooms', e.target.value)}
-            >
-              <MenuItem value={0}>{isAmharic ? 'ማናቸውም' : 'Any'}</MenuItem>
-              <MenuItem value={1}>1+ {isAmharic ? 'ክፍል' : 'Bath'}</MenuItem>
-              <MenuItem value={2}>2+ {isAmharic ? 'ክፍሎች' : 'Baths'}</MenuItem>
-              <MenuItem value={3}>3+ {isAmharic ? 'ክፍሎች' : 'Baths'}</MenuItem>
+              <MenuItem value={1}>{isAmharic ? 'ወዲያውኑ ከመጋዘን' : 'Immediate Dispatch (In Stock)'}</MenuItem>
+              <MenuItem value={2}>{isAmharic ? '1-3 የሥራ ቀናት' : '1–3 Business Days'}</MenuItem>
+              <MenuItem value={3}>{isAmharic ? '3-7 የሥራ ቀናት' : '3–7 Business Days'}</MenuItem>
+              <MenuItem value={4}>{isAmharic ? 'ልዩ ምርት (7-14 ቀናት)' : 'Custom Fabrication (7–14 Days)'}</MenuItem>
             </Select>
           </FormControl>
 

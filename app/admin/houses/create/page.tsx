@@ -85,10 +85,10 @@ const CreateHousePage = () => {
     { value: PropertyType.STEEL_FABRICATION, label: isAmharic ? 'የብረት ስራ እና ትረስ (Steel Fabrication)' : 'Steel Fabrication' },
     { value: PropertyType.GENERAL_CONTRACTING, label: isAmharic ? 'አጠቃላይ ኮንትራክቲንግ (General Contracting)' : 'General Contracting' },
     { value: PropertyType.CUSTOM_ORDER, label: isAmharic ? 'ብጁ ትዕዛዝ (Custom Order)' : 'Custom Order' },
-    { value: PropertyType.APARTMENT, label: t('property.apartment', 'Apartment') },
-    { value: PropertyType.VILLA, label: t('property.villa', 'Villa') },
-    { value: PropertyType.HOUSE, label: t('property.house', 'House') },
-    { value: PropertyType.LAND, label: t('property.land', 'Land') },
+    { value: PropertyType.APARTMENT, label: t('property.apartment', 'Construction Supplies') },
+    { value: PropertyType.VILLA, label: t('property.villa', 'Home Furniture') },
+    { value: PropertyType.HOUSE, label: t('property.house', 'Office Furniture') },
+    { value: PropertyType.LAND, label: t('property.land', 'General Contracting') },
   ];
 
   const steps = [
@@ -713,99 +713,7 @@ const CreateHousePage = () => {
         </Box>
       </Box>
 
-      <Divider sx={{ my: 2, borderColor: isDark ? '#233554' : '#e2e8f0' }} />
 
-      <Typography variant="h6" sx={{ color: isDark ? '#38bdf8' : '#2563eb', fontWeight: 700, mb: 2 }}>
-        {isAmharic ? 'የቤቱ ዝርዝር መረጃዎች' : 'Property Details'}
-      </Typography>
-
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={t('house_form.bedrooms', 'Bedrooms')}
-            type="number"
-            value={formData.details.bedrooms}
-            onChange={(e) => handleNestedChange('details', 'bedrooms', parseInt(e.target.value) || 0)}
-            InputProps={{ startAdornment: <Bed sx={{ mr: 1, color: isDark ? '#94a3b8' : '#64748b' }} /> }}
-            sx={textFieldStyle}
-          />
-        </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={t('house_form.bathrooms', 'Bathrooms')}
-            type="number"
-            value={formData.details.bathrooms}
-            onChange={(e) => handleNestedChange('details', 'bathrooms', parseInt(e.target.value) || 0)}
-            InputProps={{ startAdornment: <Bathtub sx={{ mr: 1, color: isDark ? '#94a3b8' : '#64748b' }} /> }}
-            sx={textFieldStyle}
-          />
-        </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={t('house_form.area', 'Area (sq ft / sqm)')}
-            type="number"
-            value={formData.details.area}
-            onChange={(e) => handleNestedChange('details', 'area', parseInt(e.target.value) || 0)}
-            InputProps={{ startAdornment: <SquareFoot sx={{ mr: 1, color: isDark ? '#94a3b8' : '#64748b' }} /> }}
-            sx={textFieldStyle}
-          />
-        </Box>
-      </Box>
-
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={t('house_form.year_built', 'Year Built')}
-            type="number"
-            value={formData.details.yearBuilt}
-            onChange={(e) => handleNestedChange('details', 'yearBuilt', parseInt(e.target.value) || 0)}
-            sx={textFieldStyle}
-          />
-        </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={isAmharic ? 'ፎቆች / ወለል' : 'Floors'}
-            type="number"
-            value={formData.details.floors}
-            onChange={(e) => handleNestedChange('details', 'floors', parseInt(e.target.value) || 1)}
-            sx={textFieldStyle}
-          />
-        </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
-          <TextField
-            fullWidth
-            label={t('house_form.parking', 'Parking Spaces')}
-            type="number"
-            value={formData.details.parkingSpaces}
-            onChange={(e) => handleNestedChange('details', 'parkingSpaces', parseInt(e.target.value) || 0)}
-            sx={textFieldStyle}
-          />
-        </Box>
-      </Box>
-
-      <FormControlLabel
-        control={
-          <Switch
-            checked={formData.details.furnished}
-            onChange={(e) => {
-              handleNestedChange('details', 'furnished', e.target.checked);
-              handleNestedChange(
-                'details',
-                'furnishingStatus',
-                e.target.checked ? 'furnished' : 'unfurnished'
-              );
-            }}
-            color="primary"
-          />
-        }
-        label={t('house_form.furnished', 'Fully Furnished')}
-        sx={{ color: isDark ? '#f1f5f9' : '#0f172a' }}
-      />
 
       <Divider sx={{ my: 2, borderColor: isDark ? '#233554' : '#e2e8f0' }} />
 

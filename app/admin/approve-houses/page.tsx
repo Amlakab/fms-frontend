@@ -545,19 +545,16 @@ const HouseApprovalPage = () => {
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 1 }}>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                             <AttachMoney sx={{ fontSize: 14 }} />
-                            <Typography variant="body2">{formatPrice(app.houseId?.price)}/month</Typography>
-                          </Box>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                            <Bed sx={{ fontSize: 14 }} />
-                            <Typography variant="body2">{app.houseId?.bedrooms} bed</Typography>
-                          </Box>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                            <Bathtub sx={{ fontSize: 14 }} />
-                            <Typography variant="body2">{app.houseId?.bathrooms} bath</Typography>
+                            <Typography variant="body2">{formatPrice(app.houseId?.price)}</Typography>
                           </Box>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                             <SquareFoot sx={{ fontSize: 14 }} />
-                            <Typography variant="body2">{app.houseId?.area} sqft</Typography>
+                            <Typography variant="body2">{app.houseId?.area || 'Standard'} m²</Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                            <Typography variant="caption" sx={{ px: 1, py: 0.25, borderRadius: 1, bgcolor: theme === 'dark' ? 'rgba(56,189,248,0.1)' : 'rgba(37,99,235,0.1)', color: theme === 'dark' ? '#38bdf8' : '#2563eb', fontWeight: 600 }}>
+                              25% Adv: {formatPrice((app.houseId?.price || 0) * 0.25)}
+                            </Typography>
                           </Box>
                         </Box>
                       </Box>
@@ -871,7 +868,7 @@ const HouseApprovalPage = () => {
                     gap: 1,
                     fontWeight: 600
                   }}>
-                    <Home /> {isAmharic ? 'የቤቱ መረጃ' : 'Property Information'}
+                    <Home /> {isAmharic ? 'የምርቱ ዝርዝር መረጃ' : 'Product & Supply Information'}
                   </Typography>
                   <Box sx={{ 
                     p: 2, 
@@ -886,10 +883,9 @@ const HouseApprovalPage = () => {
                       {selectedApp.houseId?.address}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                      <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatPrice(selectedApp.houseId?.price)}/month</Typography>
-                      <Typography variant="body2">{selectedApp.houseId?.bedrooms} {isAmharic ? 'መኝታ ክፍሎች' : 'beds'}</Typography>
-                      <Typography variant="body2">{selectedApp.houseId?.bathrooms} {isAmharic ? 'መታጠቢያዎች' : 'baths'}</Typography>
-                      <Typography variant="body2">{selectedApp.houseId?.area} sqft</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatPrice(selectedApp.houseId?.price)}</Typography>
+                      <Typography variant="body2">{selectedApp.houseId?.area ? `${selectedApp.houseId?.area} m²` : 'Standard Specifications'}</Typography>
+                      <Typography variant="body2" sx={{ color: '#10b981', fontWeight: 600 }}>25% Advance: {formatPrice((selectedApp.houseId?.price || 0) * 0.25)}</Typography>
                     </Box>
                   </Box>
                 </Box>

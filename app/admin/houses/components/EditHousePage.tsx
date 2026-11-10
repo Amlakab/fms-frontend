@@ -24,11 +24,16 @@ import api from '@/app/utils/api';
 import { PropertyType } from '@/types/houses';
 
 const propertyTypes = [
-  { value: PropertyType.APARTMENT, label: 'Apartment' },
-  { value: PropertyType.VILLA, label: 'Villa' },
-  { value: PropertyType.CONDO, label: 'Condo' },
-  { value: PropertyType.HOUSE, label: 'House' },
-  { value: PropertyType.LAND, label: 'Land' }
+  { value: PropertyType.CONSTRUCTION_MATERIAL, label: 'Construction Materials' },
+  { value: PropertyType.STRUCTURAL_STEEL, label: 'Structural Steel Rebar' },
+  { value: PropertyType.CEMENT_CONCRETE, label: 'Cement & Concrete' },
+  { value: PropertyType.HOLLOW_BLOCKS, label: 'Hollow Concrete Blocks (HCB)' },
+  { value: PropertyType.ROOFING_SHEETS, label: 'Galvanized Roofing Sheets' },
+  { value: PropertyType.OFFICE_FURNITURE, label: 'Office Furniture' },
+  { value: PropertyType.HOME_FURNITURE, label: 'Home Furniture' },
+  { value: PropertyType.STEEL_FABRICATION, label: 'Steel Fabrication & Trusses' },
+  { value: PropertyType.GENERAL_CONTRACTING, label: 'General Contracting' },
+  { value: PropertyType.CUSTOM_ORDER, label: 'Custom Orders' }
 ];
 
 const amenitiesOptions = [
@@ -98,6 +103,20 @@ const EditHousePage = ({ houseId, onBack, onSuccess }: EditHousePageProps) => {
       amenities: [] as string[],
       features: [] as string[]
     },
+
+    productAttributes: {
+      sku: '',
+      brand: 'MAT Engineering & Trading PLC',
+      material: '',
+      grade: '',
+      dimensions: '',
+      unit: 'Pcs',
+      weight: '',
+      stockQuantity: 100,
+      leadTime: '3-5 Business Days',
+      warranty: '1 Year Manufacturer Guarantee',
+      specifications: ''
+    },
     
     pricing: {
       price: 0,
@@ -166,6 +185,19 @@ const EditHousePage = ({ houseId, onBack, onSuccess }: EditHousePageProps) => {
           furnished: false,
           amenities: [],
           features: []
+        },
+        productAttributes: house.productAttributes || {
+          sku: '',
+          brand: 'MAT Engineering & Trading PLC',
+          material: '',
+          grade: '',
+          dimensions: '',
+          unit: 'Pcs',
+          weight: '',
+          stockQuantity: 100,
+          leadTime: '3-5 Business Days',
+          warranty: '1 Year Manufacturer Guarantee',
+          specifications: ''
         },
         pricing: {
           price: house.pricing?.price || 0,
@@ -292,6 +324,7 @@ const EditHousePage = ({ houseId, onBack, onSuccess }: EditHousePageProps) => {
       formDataToSend.append('location', JSON.stringify(formData.location));
       formDataToSend.append('details', JSON.stringify(formData.details));
       formDataToSend.append('pricing', JSON.stringify(formData.pricing));
+      formDataToSend.append('productAttributes', JSON.stringify(formData.productAttributes));
       formDataToSend.append('virtualTour', JSON.stringify(formData.virtualTour));
       
       const keepImageIds = existingImages.map(img => img._id).filter(id => !imagesToDelete.includes(id));
@@ -471,76 +504,118 @@ const EditHousePage = ({ houseId, onBack, onSuccess }: EditHousePageProps) => {
       <Divider sx={{ my: 2 }} />
       
       <Typography variant="h6" sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff', mb: 2 }}>
-        Property Details
+        MAT Engineering Product Specifications
       </Typography>
       
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Bedrooms"
-            type="number"
-            value={formData.details.bedrooms}
-            onChange={(e) => handleNestedChange('details', 'bedrooms', parseInt(e.target.value))}
-            InputProps={{ startAdornment: <Bed sx={{ mr: 1 }} /> }}
+            label="SKU / Item Code"
+            value={formData.productAttributes.sku}
+            onChange={(e) => handleNestedChange('productAttributes', 'sku', e.target.value)}
+            placeholder="e.g. MAT-STL-016"
             sx={textFieldStyle}
           />
         </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Bathrooms"
-            type="number"
-            value={formData.details.bathrooms}
-            onChange={(e) => handleNestedChange('details', 'bathrooms', parseInt(e.target.value))}
-            InputProps={{ startAdornment: <Bathtub sx={{ mr: 1 }} /> }}
+            label="Brand / Manufacturer"
+            value={formData.productAttributes.brand}
+            onChange={(e) => handleNestedChange('productAttributes', 'brand', e.target.value)}
             sx={textFieldStyle}
           />
         </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Area (sq ft)"
-            type="number"
-            value={formData.details.area}
-            onChange={(e) => handleNestedChange('details', 'area', parseInt(e.target.value))}
-            InputProps={{ startAdornment: <SquareFoot sx={{ mr: 1 }} /> }}
+            label="Material & Composition"
+            value={formData.productAttributes.material}
+            onChange={(e) => handleNestedChange('productAttributes', 'material', e.target.value)}
+            placeholder="e.g. High-Tensile Carbon Steel"
             sx={textFieldStyle}
           />
         </Box>
       </Box>
-      
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Year Built"
-            type="number"
-            value={formData.details.yearBuilt}
-            onChange={(e) => handleNestedChange('details', 'yearBuilt', parseInt(e.target.value))}
+            label="Standard / Grade"
+            value={formData.productAttributes.grade}
+            onChange={(e) => handleNestedChange('productAttributes', 'grade', e.target.value)}
+            placeholder="e.g. ASTM A615 Grade 60"
             sx={textFieldStyle}
           />
         </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Floors"
-            type="number"
-            value={formData.details.floors}
-            onChange={(e) => handleNestedChange('details', 'floors', parseInt(e.target.value))}
+            label="Dimensions / Sizing"
+            value={formData.productAttributes.dimensions}
+            onChange={(e) => handleNestedChange('productAttributes', 'dimensions', e.target.value)}
+            placeholder="e.g. 12m Length x 16mm Diameter"
             sx={textFieldStyle}
           />
         </Box>
-        <Box sx={{ flex: 1, minWidth: '120px' }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
           <TextField
             fullWidth
-            label="Parking Spaces"
-            type="number"
-            value={formData.details.parkingSpaces}
-            onChange={(e) => handleNestedChange('details', 'parkingSpaces', parseInt(e.target.value))}
+            label="Unit of Measure"
+            value={formData.productAttributes.unit}
+            onChange={(e) => handleNestedChange('productAttributes', 'unit', e.target.value)}
+            placeholder="e.g. Tons, Pcs, Sqm, Quintals"
             sx={textFieldStyle}
           />
         </Box>
+      </Box>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
+          <TextField
+            fullWidth
+            label="Stock Quantity Available"
+            type="number"
+            value={formData.productAttributes.stockQuantity}
+            onChange={(e) => handleNestedChange('productAttributes', 'stockQuantity', parseInt(e.target.value) || 0)}
+            sx={textFieldStyle}
+          />
+        </Box>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
+          <TextField
+            fullWidth
+            label="Lead Time (Delivery / Fabrication)"
+            value={formData.productAttributes.leadTime}
+            onChange={(e) => handleNestedChange('productAttributes', 'leadTime', e.target.value)}
+            placeholder="e.g. Immediate / 3-5 Business Days"
+            sx={textFieldStyle}
+          />
+        </Box>
+        <Box sx={{ flex: 1, minWidth: '150px' }}>
+          <TextField
+            fullWidth
+            label="Warranty Period"
+            value={formData.productAttributes.warranty}
+            onChange={(e) => handleNestedChange('productAttributes', 'warranty', e.target.value)}
+            placeholder="e.g. 1 Year Manufacturer Guarantee"
+            sx={textFieldStyle}
+          />
+        </Box>
+      </Box>
+
+      <Box sx={{ mt: 2 }}>
+        <TextField
+          fullWidth
+          label="Technical Specifications & Quality Notes"
+          multiline
+          rows={2}
+          value={formData.productAttributes.specifications}
+          onChange={(e) => handleNestedChange('productAttributes', 'specifications', e.target.value)}
+          placeholder="Compliance certifications, factory tolerances, test results..."
+          sx={textFieldStyle}
+        />
       </Box>
       
       <FormControlLabel

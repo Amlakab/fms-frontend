@@ -390,10 +390,10 @@ const AdminHousesList = ({ onNavigate, refreshTrigger = 0 }: AdminHousesListProp
               </Box>
               <Box sx={{ flex: { xs: '1 1 100%', sm: '1 1 calc(33.33% - 16px)', md: '1 1 calc(20% - 16px)' }, minWidth: '150px' }}>
                 <FormControl fullWidth size="small">
-                  <InputLabel>Min Bedrooms</InputLabel>
-                  <Select value={filters.minBedrooms} label="Min Bedrooms" onChange={(e) => handleFilterChange('minBedrooms', e.target.value)} sx={selectStyle}>
+                  <InputLabel>Min Standard Units</InputLabel>
+                  <Select value={filters.minBedrooms} label="Min Standard Units" onChange={(e) => handleFilterChange('minBedrooms', e.target.value)} sx={selectStyle}>
                     <MenuItem value="">Any</MenuItem>
-                    {filterOptions.bedroomOptions.map(opt => <MenuItem key={opt._id} value={opt._id}>{opt._id}+</MenuItem>)}
+                    {filterOptions.bedroomOptions.map(opt => <MenuItem key={opt._id} value={opt._id}>{opt._id}+ units</MenuItem>)}
                   </Select>
                 </FormControl>
               </Box>
@@ -486,10 +486,10 @@ const AdminHousesList = ({ onNavigate, refreshTrigger = 0 }: AdminHousesListProp
                       <CardContent>
                         <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1, display: '-webkit-box', WebkitLineClamp: 2, overflow: 'hidden' }}>{house.title}</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }}><LocationOn sx={{ fontSize: 14 }} /><Typography variant="caption">{house.location.city}, {house.location.state}</Typography></Box>
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}><Bed sx={{ fontSize: 14 }} /><Typography variant="body2">{house.details.bedrooms}</Typography></Box>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}><Bathtub sx={{ fontSize: 14 }} /><Typography variant="body2">{house.details.bathrooms}</Typography></Box>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}><SquareFoot sx={{ fontSize: 14 }} /><Typography variant="body2">{house.details.area.toLocaleString()} sqft</Typography></Box>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2, alignItems: 'center' }}>
+                          <Chip size="small" variant="outlined" label={house.productAttributes?.sku ? `SKU: ${house.productAttributes.sku}` : 'MAT-PRD'} sx={{ fontSize: 11, fontWeight: 700 }} />
+                          <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary' }}>{house.productAttributes?.material || 'Certified Spec'}</Typography>
+                          {house.productAttributes?.leadTime && <Typography variant="caption" color="info.main">• {house.productAttributes.leadTime}</Typography>}
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <Typography variant="h5" sx={{ fontWeight: 'bold', color: theme === 'dark' ? '#00ffff' : '#007bff' }}>{formatPrice(house.pricing.price)}</Typography>
@@ -518,7 +518,7 @@ const AdminHousesList = ({ onNavigate, refreshTrigger = 0 }: AdminHousesListProp
             <Box component="table" sx={{ width: '100%', borderCollapse: 'collapse' }}>
               <Box component="thead" sx={{ background: theme === 'dark' ? 'linear-gradient(135deg, #00ffff, #00b3b3)' : 'linear-gradient(135deg, #007bff, #0056b3)' }}>
                 <Box component="tr" sx={{ display: 'table-row' }}>
-                  {['Property', 'Type', 'Location', 'Price', 'Units', 'Status', 'Approval', 'Actions'].map(header => <Box key={header} component="th" sx={{ p: 2, textAlign: 'left', color: 'white', fontWeight: 'bold' }}>{header}</Box>)}
+                  {['Product', 'Category', 'Showroom / Facility', 'Unit Price', 'Stock Units', 'Status', 'Approval', 'Actions'].map(header => <Box key={header} component="th" sx={{ p: 2, textAlign: 'left', color: 'white', fontWeight: 'bold' }}>{header}</Box>)}
                 </Box>
               </Box>
               <Box component="tbody">
@@ -536,7 +536,7 @@ const AdminHousesList = ({ onNavigate, refreshTrigger = 0 }: AdminHousesListProp
                             }}
                           />
                         </Box>
-                        <Box><Typography variant="body2" sx={{ fontWeight: 500 }}>{house.title}</Typography><Typography variant="caption" color="text.secondary">{house.details.bedrooms} beds • {house.details.bathrooms} baths • {house.details.area} sqft</Typography></Box>
+                        <Box><Typography variant="body2" sx={{ fontWeight: 500 }}>{house.title}</Typography><Typography variant="caption" color="text.secondary">{house.productAttributes?.sku || 'MAT-PRD'} • {house.productAttributes?.material || 'Certified Material'} • {house.productAttributes?.unit || 'Units'}</Typography></Box>
                       </Box>
                     </Box>
                     <Box component="td" sx={{ p: 2 }}><Chip label={propertyTypeLabels[house.propertyType]} size="small" /></Box>

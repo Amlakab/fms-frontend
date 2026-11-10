@@ -193,7 +193,7 @@ export default function ServicePage() {
           <div className="absolute inset-0 z-0">
             <Image
               src={images.hero}
-              alt="Real Estate Services"
+              alt="MAT Engineering & Trading Services"
               fill
               className="object-cover"
               priority
@@ -394,12 +394,12 @@ export default function ServicePage() {
         <section className={`py-12 sm:py-16 px-4 ${theme === 'dark' ? 'bg-gradient-to-r from-blue-900 to-blue-950' : 'bg-gradient-to-r from-blue-600 to-blue-800'}`}>
           <div className="container mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              {isAmharic ? 'ዛሬውኑ ከእኛ ጋር ይጀምሩ' : 'Ready to Start Your Real Estate Journey?'}
+              {isAmharic ? 'ዛሬውኑ ከእኛ ጋር ይጀምሩ' : 'Ready to Procure Engineering Materials & Furniture?'}
             </h2>
             <p className="text-sm sm:text-base text-white/90 max-w-xl mx-auto mb-6">
               {isAmharic 
-                ? 'ምርጥ የቤት አማራጮችን ለማግኘት ወይም ቤትዎን ለመሸጥ ባለሙያዎቻችንን ያነጋግሩ።' 
-                : 'Connect with our expert team to explore tailored buying, selling, or property management services.'}
+                ? 'ጥራት ያላቸው የግንባታ እቃዎችን፣ የቤትና ቢሮ ፈርኒቸር ለማዘዝ ወይም የዋጋ ድርድር ለመጀመር የሽያጭ ሰራተኞቻችንን ያነጋግሩ።' 
+                : 'Connect with our Sales Staff and engineering team for certified construction materials, custom furniture orders, or competitive price negotiations.'}
             </p>
             <Link
               href="/contact"

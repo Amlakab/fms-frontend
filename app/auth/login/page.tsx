@@ -322,9 +322,9 @@ export default function LoginPage() {
               </h3>
               <div className="space-y-3.5">
                 {[
-                  { icon: <FaHome className="text-blue-500" />, title: isAmharic ? 'የተረጋገጡ ቤቶች' : 'Verified Listings', desc: isAmharic ? '100% ህጋዊ ሰነድ ያላቸው ምርጥ ቤቶች' : 'Accurate details and verified ownership' },
-                  { icon: <FaShieldAlt className="text-emerald-500" />, title: isAmharic ? 'አስተማማኝ ግብይት' : 'Secure Transactions', desc: isAmharic ? 'በህግ አግባብ የተጠበቀ የክፍያ እና የውል አሰራር' : 'Protected data and safe payment channels' },
-                  { icon: <FaUsers className="text-purple-500" />, title: isAmharic ? 'የወሰኑ ወኪሎች' : 'Dedicated Agents', desc: isAmharic ? 'በማንኛውም ሰዓት ድጋፍ የሚሰጥ የባለሙያ ቡድን' : 'Expert real estate advice whenever you need' },
+                  { icon: <FaHome className="text-blue-500" />, title: isAmharic ? 'የተረጋገጡ ምርቶች' : 'Certified Products', desc: isAmharic ? '100% ጥራት ያላቸው እና የተረጋገጡ የግንባታ እቃዎች' : 'Accurate specs and factory-tested materials' },
+                  { icon: <FaShieldAlt className="text-emerald-500" />, title: isAmharic ? 'የ25% ቅድመ ክፍያ' : '25% Advance Milestone', desc: isAmharic ? '25% ቅድመ ክፍያ ቀሪው 75% ምርቱ ሲጠናቀቅና ሲረከቡ' : 'Pay 25% deposit to initiate fabrication, 75% on handover' },
+                  { icon: <FaUsers className="text-purple-500" />, title: isAmharic ? 'የሽያጭ ሰራተኞች' : 'Sales Staff Support', desc: isAmharic ? 'በቀጥታ የዋጋ ድርድር እና ክትትል የሚሰጥ የባለሙያ ቡድን' : 'Direct price negotiation and dedicated order tracking' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <div className={`p-2 rounded-xl shrink-0 mt-0.5 ${

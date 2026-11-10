@@ -600,39 +600,43 @@ const PublicHouseDetailPage = ({ houseId, onBack }: PublicHouseDetailPageProps) 
               </Box>
             </Card>
             
-            {/* Key Features */}
+            {/* Engineering Specifications */}
             <Card sx={{ mb: 3, borderRadius: 3, p: 3, backgroundColor: theme === 'dark' ? '#0f172a80' : 'white' }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', color: theme === 'dark' ? '#00ffff' : '#007bff', mb: 2 }}>
-                Key Features
+                MAT Engineering Specifications
               </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Bed sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
-                  <Box>
-                    <Typography variant="h6">{house.details.bedrooms}</Typography>
-                    <Typography variant="caption">Bedrooms</Typography>
-                  </Box>
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', sm: 'repeat(4, 1fr)' }, gap: 2 }}>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">SKU / Code</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.sku || 'MAT-PRD'}</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Bathtub sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
-                  <Box>
-                    <Typography variant="h6">{house.details.bathrooms}</Typography>
-                    <Typography variant="caption">Bathrooms</Typography>
-                  </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Material & Grade</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.material || house.productAttributes?.grade || 'Certified Spec'}</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <SquareFoot sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
-                  <Box>
-                    <Typography variant="h6">{house.details.area.toLocaleString()}</Typography>
-                    <Typography variant="caption">Sq Ft</Typography>
-                  </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Unit of Measure</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.unit || 'Units'}</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <LocalParking sx={{ color: theme === 'dark' ? '#00ffff' : '#007bff' }} />
-                  <Box>
-                    <Typography variant="h6">{house.details.parkingSpaces}</Typography>
-                    <Typography variant="caption">Parking</Typography>
-                  </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Lead Time</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.leadTime || '3-5 Days'}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Dimensions</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.dimensions || `${house.details.area || 0} m²`}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Warranty</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.warranty || '1 Year Standard'}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Stock Availability</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>{house.productAttributes?.stockQuantity != null ? `${house.productAttributes.stockQuantity} in stock` : 'Available'}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">Payment Plan</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700, color: 'success.main' }}>25% Advance / 75% Final</Typography>
                 </Box>
               </Box>
             </Card>

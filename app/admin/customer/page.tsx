@@ -217,7 +217,7 @@ export default function AdminCustomerPage() {
             </Typography>
             <Chip
               size="small"
-              label={isAmharic ? 'ሪል እስቴት' : 'Real Estate Hub'}
+              label={isAmharic ? 'ማት ኢንጂነሪንግ' : 'MAT Engineering & Trading PLC'}
               sx={{
                 bgcolor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)',
                 color: isDark ? '#3b82f6' : '#2563eb',
@@ -548,7 +548,7 @@ export default function AdminCustomerPage() {
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Person fontSize="small" sx={{ color: isDark ? '#8892b0' : '#64748b' }} />
                                 <Typography variant="body2" sx={{ color: isDark ? '#8892b0' : '#64748b' }}>
-                                  Host: {app.hostId?.name || 'Assigned Real Estate Agent'}
+                                  {isAmharic ? 'የሽያጭ ሰራተኛ፡' : 'Sales Representative:'} {app.hostId?.name || (isAmharic ? 'የተመደበ የሽያጭ ሰራተኛ' : 'Assigned Sales Staff')}
                                 </Typography>
                               </Box>
                             </Box>
@@ -1702,7 +1702,7 @@ export default function AdminCustomerPage() {
                 <MenuItem value="LOW">Low (Cosmetic / Flexible)</MenuItem>
                 <MenuItem value="MEDIUM">Medium (Normal priority)</MenuItem>
                 <MenuItem value="HIGH">High (Urgent attention)</MenuItem>
-                <MenuItem value="EMERGENCY">Emergency (Burst pipe / power outage)</MenuItem>
+                <MenuItem value="EMERGENCY">Emergency (Critical defect / site delivery issue)</MenuItem>
               </Select>
             </FormControl>
 
@@ -1710,7 +1710,7 @@ export default function AdminCustomerPage() {
               label="Brief Issue Title"
               required
               fullWidth
-              placeholder="e.g. Master bathroom sink drain clogged"
+              placeholder="e.g. Steel coating blemish, missing fastener hardware, or dimensional variance"
               value={newTicket.title}
               onChange={(e) => setNewTicket({ ...newTicket, title: e.target.value })}
               InputLabelProps={{ sx: { color: isDark ? '#8892b0' : undefined } }}

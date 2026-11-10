@@ -8,38 +8,38 @@ import { useTheme } from '@/lib/theme-context';
 import { FaDownload, FaEnvelope, FaKey, FaUser, FaCity, FaUserTag } from 'react-icons/fa';
 import Image from 'next/image';
 
-// Import document images and PDFs
+// Import MAT Engineering technical documents and catalogs
 const documents = [
   {
     id: 1,
-    title: 'Secure Website Management Standard',
-    description: 'This document outlines the standards for managing secure websites, ensuring compliance with national cybersecurity guidelines.',
+    title: 'MAT Structural Steel Specification & Rebar Grade 60 Standards',
+    description: 'Comprehensive technical datasheet outlining chemical composition, tensile yield strength (420-620 MPa), and ASTM A615 Grade 60 standards for reinforcement rebar supply.',
     downloadLink: '/documents/Document1.pdf',
     image: '/images/image23.jpg',
   },
   {
     id: 2,
-    title: 'Cyber Security Risk Assessment Framework',
-    description: 'A comprehensive framework for assessing cybersecurity risks within organizations, providing a structured approach to risk management.',
+    title: 'Cement & Concrete Aggregates Quality Compliance Certificate',
+    description: 'Official Ethiopian Standards (ES) and EN 197-1 compliance certificates for National and Dangote PPC/OPC 42.5N cement and Class A/B hollow concrete blocks.',
     downloadLink: '/documents/Document2.pdf',
   },
   {
     id: 3,
-    title: 'National Cyber Security Framework Development Methodology',
-    description: 'Methodology for developing a national cybersecurity framework, aimed at enhancing the country\'s cybersecurity posture.',
+    title: 'Executive Office & Home Furniture Technical Product Catalog',
+    description: 'Full product directory detailing hardwood dining suites, modern sectional sofas, executive boardroom tables, and ergonomic office chairs manufactured by MAT Engineering & Trading PLC.',
     downloadLink: '/documents/Document3.pdf',
     image: '/images/image22.jpg',
   },
   {
     id: 4,
-    title: 'Secure Software Development and Management Standard',
-    description: 'Standards for secure software development and management, ensuring that software systems are developed with security in mind.',
+    title: 'Pre-Engineered Steel Structures & Industrial Truss Fabrication Manual',
+    description: 'Engineering blueprint guidelines for architectural steel truss welding, anti-corrosive primer coating, and warehouse superstructure fabrication.',
     downloadLink: '/documents/Document4.pdf',
   },
   {
     id: 5,
-    title: 'VRC-R (VRC_RJY)++ A(M_ATC)*',
-    description: 'Technical documentation for the VRC-R system, detailing its architecture, components, and operational protocols.',
+    title: 'Commercial Supply Terms, 25% Advance Milestone & Warranty Manual',
+    description: 'Contractual guidelines detailing the 25% upfront advance deposit, price negotiation protocol with Sales Staff, and 75% final payment upon product completion and handover.',
     downloadLink: '/documents/Document5.pdf',
     image: '/images/image22.jpg',
   },

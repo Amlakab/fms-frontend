@@ -152,8 +152,8 @@ export default function PurchaseReceiptModal({
           <Shield sx={{ fontSize: 18, color: '#10b981' }} />
           <Typography variant="caption">
             {language === 'am'
-              ? 'ይህ ሰነድ በዲጂታል የተረጋገጠ ህጋዊ የንብረት ግዢ ክፍያ ደረሰኝ ነው።'
-              : 'Certified digital real estate purchase receipt issued by HRMS escrow.'}
+              ? 'ይህ ሰነድ በማት ኢንጂነሪንግ እና ትሬዲንግ ኃ/የተ/የግ/ማህበር በዲጂታል የተረጋገጠ ህጋዊ የሽያጭ ክፍያ ደረሰኝ ነው።'
+              : 'Certified digital sales and supply receipt issued by MAT Engineering & Trading PLC.'}
           </Typography>
         </Box>
       </DialogContent>

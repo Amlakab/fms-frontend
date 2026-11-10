@@ -159,12 +159,12 @@ const AdminDashboardPage = () => {
   }
 
   const statCards = [
-    { title: t('dashboard.total_properties', 'Total Properties'), value: houseStats?.totalHouses || 0, icon: <Home />, color: '#3b82f6', change: '+12%' },
-    { title: t('dashboard.available_properties', 'Available Properties'), value: houseStats?.availableHouses || 0, icon: <CheckCircle />, color: '#10b981', change: '+5%' },
-    { title: t('dashboard.sold_rented', 'Sold / Rented'), value: (houseStats?.soldHouses || 0) + (houseStats?.rentedHouses || 0), icon: <TrendingUp />, color: '#f59e0b', change: '+8%' },
-    { title: t('dashboard.total_orders', 'Total Orders'), value: orderStats?.totalOrders || 0, icon: <ShoppingCart />, color: '#8b5cf6', change: '+15%' },
-    { title: t('dashboard.total_views', 'Total Views'), value: houseStats?.totalViews || 0, icon: <Visibility />, color: '#06b6d4', change: '+23%' },
-    { title: t('dashboard.total_revenue', 'Total Revenue'), value: formatPrice(orderStats?.totalRevenue || 0), icon: <AttachMoney />, color: '#10b981', change: '+18%' }
+    { title: isAmharic ? 'ጠቅላላ ምርቶች' : 'Total Products', value: houseStats?.totalHouses || 0, icon: <Home />, color: '#3b82f6', change: '+12%' },
+    { title: isAmharic ? 'በመጋዘን ያሉ' : 'In-Stock Products', value: houseStats?.availableHouses || 0, icon: <CheckCircle />, color: '#10b981', change: '+5%' },
+    { title: isAmharic ? 'የተጠናቀቁ / የተረከቡ' : 'Fulfilled & Taken', value: (houseStats?.soldHouses || 0) + (houseStats?.rentedHouses || 0), icon: <TrendingUp />, color: '#f59e0b', change: '+8%' },
+    { title: isAmharic ? 'ጠቅላላ ትዕዛዞች' : 'Total Orders', value: orderStats?.totalOrders || 0, icon: <ShoppingCart />, color: '#8b5cf6', change: '+15%' },
+    { title: isAmharic ? 'የምርት እይታዎች' : 'Product Views', value: houseStats?.totalViews || 0, icon: <Visibility />, color: '#06b6d4', change: '+23%' },
+    { title: isAmharic ? 'ጠቅላላ የሽያጭ ገቢ' : 'Total Sales Revenue', value: formatPrice(orderStats?.totalRevenue || 0), icon: <AttachMoney />, color: '#10b981', change: '+18%' }
   ];
 
   return (
@@ -173,10 +173,10 @@ const AdminDashboardPage = () => {
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         <Box sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary', mb: 0.5, fontSize: { xs: '1.4rem', sm: '1.8rem' } }}>
-            {t('dashboard.title', 'Admin Dashboard')}
+            {isAmharic ? 'የማት ኢንጂነሪንግ ዳሽቦርድ' : 'MAT Engineering & Trading Dashboard'}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {t('dashboard.overview', 'Overview of your real estate platform performance')}
+            {isAmharic ? 'የማት ኢንጂነሪንግ የምርት፣ ሽያጭ እና የደንበኛ ድርድሮች አጠቃላይ ሁኔታ' : 'Overview of MAT Engineering & Trading PLC production, sales & negotiations'}
           </Typography>
         </Box>
       </motion.div>
@@ -227,7 +227,7 @@ const AdminDashboardPage = () => {
         <Card sx={{ borderRadius: 3, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
           <CardContent sx={{ p: 2.5 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 700, color: 'text.primary', mb: 2 }}>
-              {isAmharic ? 'ቤቶች በዓይነት' : 'Properties by Type'}
+              {isAmharic ? 'ምርቶች በምድብ' : 'Products by Category'}
             </Typography>
             <Box sx={{ height: 280 }}>
               <Pie data={propertyTypeData} options={chartOptions} />
@@ -252,7 +252,7 @@ const AdminDashboardPage = () => {
         <Card sx={{ borderRadius: 3, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
           <CardContent sx={{ p: 2.5 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 700, color: 'text.primary', mb: 2 }}>
-              {isAmharic ? 'በብዛት የታዩ ቤቶች' : 'Most Viewed Properties'}
+              {isAmharic ? 'በብዛት የታዩ ምርቶች' : 'Most Inquired Products'}
             </Typography>
             <Box sx={{ height: 280 }}>
               <Bar data={topViewedData} options={barChartOptions} />
@@ -343,7 +343,7 @@ const AdminDashboardPage = () => {
               <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
                   <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                    {isAmharic ? 'ማረጋገጫ የሚጠብቁ ቤቶች' : 'Pending Approval'}
+                    {isAmharic ? 'ማረጋገጫ የሚጠብቁ ምርቶች' : 'Products Pending Approval'}
                   </Typography>
                   <Typography variant="caption" sx={{ fontWeight: 700 }}>
                     {houseStats?.pendingApproval || 0}

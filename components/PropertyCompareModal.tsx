@@ -68,10 +68,10 @@ export default function PropertyCompareModal({
           <CompareArrows sx={{ color: '#06b6d4', fontSize: 28 }} />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 700 }}>
-              Side-by-Side Property Comparison
+              MAT Engineering Product Comparison
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Comparing {properties.length} {properties.length === 1 ? 'property' : 'properties'}
+              Comparing {properties.length} {properties.length === 1 ? 'product' : 'products'}
             </Typography>
           </Box>
         </Box>
@@ -198,61 +198,80 @@ export default function PropertyCompareModal({
                 ))}
               </TableRow>
 
-              {/* Bedrooms & Bathrooms */}
+              {/* SKU & Brand */}
               <TableRow>
-                <TableCell sx={{ fontWeight: 600 }}>Beds / Baths</TableCell>
+                <TableCell sx={{ fontWeight: 600 }}>SKU / Brand</TableCell>
                 {properties.map((p) => (
                   <TableCell key={p._id}>
-                    <Box sx={{ display: 'flex', gap: 2 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <Bed fontSize="small" sx={{ color: 'text.secondary' }} />
-                        <Typography variant="body2">{p.details.bedrooms} Beds</Typography>
-                      </Box>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <Bathtub fontSize="small" sx={{ color: 'text.secondary' }} />
-                        <Typography variant="body2">{p.details.bathrooms} Baths</Typography>
-                      </Box>
-                    </Box>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                      {p.productAttributes?.sku || 'MAT-PRD'}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                      {p.productAttributes?.brand || 'MAT Engineering & Trading PLC'}
+                    </Typography>
                   </TableCell>
                 ))}
               </TableRow>
 
-              {/* Total Area */}
+              {/* Material & Grade */}
               <TableRow>
-                <TableCell sx={{ fontWeight: 600 }}>Total Floor Area</TableCell>
+                <TableCell sx={{ fontWeight: 600 }}>Material & Grade</TableCell>
                 {properties.map((p) => (
                   <TableCell key={p._id}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                      <SquareFoot fontSize="small" sx={{ color: 'text.secondary' }} />
-                      <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                        {p.details.area} m²
-                      </Typography>
-                    </Box>
+                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                      {p.productAttributes?.material || 'Certified Industrial Spec'}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                      {p.productAttributes?.grade || 'ASTM / ISO Standard'}
+                    </Typography>
                   </TableCell>
                 ))}
               </TableRow>
 
-              {/* Furnishing */}
+              {/* Dimensions & Unit */}
               <TableRow>
-                <TableCell sx={{ fontWeight: 600 }}>Furnishing</TableCell>
+                <TableCell sx={{ fontWeight: 600 }}>Dimensions / Unit</TableCell>
+                {properties.map((p) => (
+                  <TableCell key={p._id}>
+                    <Typography variant="body2">
+                      {p.productAttributes?.dimensions || `${p.details.area || 0} m²`}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                      Unit: {p.productAttributes?.unit || 'Pcs / Units'}
+                    </Typography>
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              {/* Lead Time & Stock */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: 600 }}>Availability / Lead Time</TableCell>
                 {properties.map((p) => (
                   <TableCell key={p._id}>
                     <Chip
                       size="small"
-                      label={p.details.furnishingStatus || (p.details.furnished ? 'Furnished' : 'Unfurnished')}
-                      sx={{ textTransform: 'capitalize' }}
+                      color="primary"
+                      variant="outlined"
+                      label={p.productAttributes?.stockQuantity != null ? `${p.productAttributes.stockQuantity} in stock` : 'In Stock'}
+                      sx={{ mr: 1, mb: 0.5 }}
                     />
+                    <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary' }}>
+                      Lead time: {p.productAttributes?.leadTime || 'Immediate / 3-5 days'}
+                    </Typography>
                   </TableCell>
                 ))}
               </TableRow>
 
-              {/* Security Deposit */}
+              {/* 25% Advance Partial Payment */}
               <TableRow>
-                <TableCell sx={{ fontWeight: 600 }}>Security Deposit</TableCell>
+                <TableCell sx={{ fontWeight: 600 }}>Payment Options</TableCell>
                 {properties.map((p) => (
                   <TableCell key={p._id}>
-                    <Typography variant="body2">
-                      {p.pricing.securityDeposit ? `ETB ${p.pricing.securityDeposit.toLocaleString()}` : 'None required'}
+                    <Typography variant="body2" sx={{ color: '#10b981', fontWeight: 700 }}>
+                      25% Advance: ETB {(p.pricing.price * 0.25).toLocaleString()}
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                      75% Final upon completion: ETB {(p.pricing.price * 0.75).toLocaleString()}
                     </Typography>
                   </TableCell>
                 ))}

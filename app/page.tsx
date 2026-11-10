@@ -511,7 +511,7 @@ export default function Home() {
                           <div className="flex items-center justify-between text-xs font-medium text-gray-600 dark:text-gray-300 py-2.5 border-t border-gray-100 dark:border-slate-800">
                             <div className="flex items-center gap-1">
                               <FaTools className="text-blue-500" />
-                              <span>{property.productAttributes?.material || property.productAttributes?.brand || (property.details?.bedrooms ? `${property.details.bedrooms} beds` : 'MAT Certified')}</span>
+                              <span>{property.productAttributes?.material || property.productAttributes?.brand || 'MAT Certified Spec'}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <FaAward className="text-blue-500" />

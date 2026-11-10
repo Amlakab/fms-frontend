@@ -138,7 +138,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 z-0">
             <Image
               src={images.aboutHero}
-              alt="Real Estate Agency"
+              alt="MAT Engineering & Trading PLC"
               fill
               className="object-cover"
               priority
@@ -319,8 +319,8 @@ export default function AboutPage() {
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
                 {isAmharic 
-                  ? 'ልምድ ያላቸው እና ቁርጠኛ የሆኑ የአመራር አባሎቻችን' 
-                  : 'Experienced professionals dedicated to your real estate success'}
+                  ? 'ልምድ ያላቸው እና ቁርጠኛ የሆኑ የአመራር እና የኢንጂነሪንግ አባሎቻችን' 
+                  : 'Experienced leaders and engineers dedicated to your manufacturing, procurement, and project success'}
               </p>
             </div>
 

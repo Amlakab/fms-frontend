@@ -588,19 +588,20 @@ export default function CustomerOrdersPage() {
                         </Typography>
                       </Box>
                       
-                      <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <Bed sx={{ fontSize: 16, color: isDark ? '#94a3b8' : '#64748b' }} />
-                          <Typography variant="body2">{(selectedOrder.houseId as House)?.details?.bedrooms || 0} {t('property.beds', 'beds')}</Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <Bathtub sx={{ fontSize: 16, color: isDark ? '#94a3b8' : '#64748b' }} />
-                          <Typography variant="body2">{(selectedOrder.houseId as House)?.details?.bathrooms || 0} {t('property.baths', 'baths')}</Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <SquareFoot sx={{ fontSize: 16, color: isDark ? '#94a3b8' : '#64748b' }} />
-                          <Typography variant="body2">{(selectedOrder.houseId as House)?.details?.area || 0} {t('property.sqft', 'sqft')}</Typography>
-                        </Box>
+                      <Box sx={{ display: 'flex', gap: 1.5, mt: 1, flexWrap: 'wrap' }}>
+                        <Chip
+                          size="small"
+                          label={`SKU: ${(selectedOrder.houseId as House)?.productAttributes?.sku || 'MAT-PRD'}`}
+                          sx={{ fontWeight: 600, fontSize: 11 }}
+                        />
+                        <Typography variant="body2" sx={{ color: isDark ? '#cbd5e1' : '#475569', fontWeight: 600 }}>
+                          {(selectedOrder.houseId as House)?.productAttributes?.material || 'Standard Grade'}
+                        </Typography>
+                        {(selectedOrder.houseId as House)?.productAttributes?.unit && (
+                          <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                            • {(selectedOrder.houseId as House)?.productAttributes?.unit}
+                          </Typography>
+                        )}
                       </Box>
                     </Box>
                     

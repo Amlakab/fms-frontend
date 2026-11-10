@@ -647,8 +647,8 @@ export default function AdminWorkflowManagementPage() {
               {applications.length === 0 ? (
                 <Paper elevation={0} sx={{ p: 6, textAlign: 'center', borderRadius: 3, border: '1px dashed', borderColor: isDark ? 'rgba(0, 255, 255, 0.2)' : '#cbd5e1', bgcolor: isDark ? '#0f172a40' : '#f8fafc' }}>
                   <Description sx={{ fontSize: 48, color: '#8b5cf6', mb: 1, opacity: 0.8 }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No rental applications submitted</Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>When prospective tenants apply for rental properties from the marketplace, their background, income, and preferred move-in requests appear here.</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No supply / order applications submitted</Typography>
+                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>When prospective clients submit custom supply applications from the catalog, their order requirements and target dates appear here.</Typography>
                 </Paper>
               ) : (
                 <Stack spacing={3}>
@@ -778,10 +778,10 @@ export default function AdminWorkflowManagementPage() {
               {leases.length === 0 ? (
                 <Paper elevation={0} sx={{ p: 6, textAlign: 'center', borderRadius: 3, border: '1px dashed', borderColor: isDark ? 'rgba(0, 255, 255, 0.2)' : '#cbd5e1', bgcolor: isDark ? '#0f172a40' : '#f8fafc' }}>
                   <Article sx={{ fontSize: 48, color: '#10b981', mb: 1, opacity: 0.8 }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No active lease agreements</Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b', mb: 2 }}>Create contracts for verified tenants to manage rent schedules and payment receipts.</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No active supply contracts</Typography>
+                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b', mb: 2 }}>Create supply & fabrication contracts for verified clients to manage 25% advance and 75% delivery milestones.</Typography>
                   <Button variant="contained" startIcon={<Add />} onClick={() => setCreateLeaseModalOpen(true)} sx={{ bgcolor: isDark ? '#00ffff' : '#0284c7', color: isDark ? '#0a192f' : '#ffffff', borderRadius: 2 }}>
-                    Generate First Lease
+                    Generate First Supply Contract
                   </Button>
                 </Paper>
               ) : (
@@ -845,13 +845,13 @@ export default function AdminWorkflowManagementPage() {
                               </Button>
                             }
                           >
-                            <strong>Stop Lease Agreement Requested:</strong> {lease.terminationRequest?.requestedByRole === 'tenant' ? 'Tenant requested termination' : 'Stop notice initiated'}.
+                            <strong>Stop Supply Contract Requested:</strong> {lease.terminationRequest?.requestedByRole === 'tenant' ? 'Client requested contract cancellation' : 'Stop notice initiated'}.
                             {lease.terminationRequest?.reason ? ` Reason: "${lease.terminationRequest.reason}"` : ''}
                           </Alert>
                         )}
                         {lease.status === 'TERMINATED' && (
                           <Alert severity="info" sx={{ my: 1.5, borderRadius: 2 }}>
-                            <strong>Lease Terminated & Property Vacated:</strong> Contract has been terminated and this property was automatically returned to <strong>Available</strong> status for other rent.
+                            <strong>Supply Contract Terminated:</strong> Contract has been closed and product inventory was automatically restored to <strong>Available</strong> status for other clients.
                           </Alert>
                         )}
 
@@ -1296,8 +1296,8 @@ export default function AdminWorkflowManagementPage() {
               {maintenanceTickets.length === 0 ? (
                 <Paper elevation={0} sx={{ p: 6, textAlign: 'center', borderRadius: 3, border: '1px dashed', borderColor: isDark ? 'rgba(0, 255, 255, 0.2)' : '#cbd5e1', bgcolor: isDark ? '#0f172a40' : '#f8fafc' }}>
                   <Build sx={{ fontSize: 48, color: '#ef4444', mb: 1, opacity: 0.8 }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No maintenance tickets reported</Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>When tenants report plumbing, electrical, or structural damage, dispatch tickets will appear here.</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#f1f5f9' : '#0f172a' }}>No warranty or maintenance tickets reported</Typography>
+                  <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>When clients report material defects, fabrication issues, or assembly requests, dispatch tickets will appear here.</Typography>
                 </Paper>
               ) : (
                 <Stack spacing={2.5}>
@@ -1329,7 +1329,7 @@ export default function AdminWorkflowManagementPage() {
                       </Typography>
 
                       <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                        Property: {(typeof ticket.houseId === 'object' && ticket.houseId) ? (ticket.houseId.title || 'Rental Unit') : 'Rental Unit'} • Tenant: {ticket.tenantName} ({ticket.tenantPhone})
+                        Product: {(typeof ticket.houseId === 'object' && ticket.houseId) ? (ticket.houseId.title || 'Product Item') : 'Product Item'} • Client: {ticket.tenantName} ({ticket.tenantPhone})
                       </Typography>
 
                       {ticket.assignedTechnician && (
@@ -1782,17 +1782,17 @@ export default function AdminWorkflowManagementPage() {
                 Applicant: {selectedApp.fullName}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                Property: {(typeof selectedApp.houseId === 'object' && selectedApp.houseId) ? (selectedApp.houseId.title || 'Property') : 'Property'}
+                Product: {(typeof selectedApp.houseId === 'object' && selectedApp.houseId) ? (selectedApp.houseId.title || 'Product') : 'Product'}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                Income: ETB {selectedApp.monthlyIncome?.toLocaleString()} • Move-in: {new Date(selectedApp.preferredMoveInDate).toLocaleDateString()}
+                Order Value: ETB {selectedApp.monthlyIncome?.toLocaleString()} • Target Delivery: {new Date(selectedApp.preferredMoveInDate).toLocaleDateString()}
               </Typography>
             </Box>
           )}
 
           <Typography variant="body2" sx={{ color: isDark ? '#ccd6f6' : '#334155' }}>
             {appReviewStatus === 'APPROVED'
-              ? 'Approving this application will automatically generate a draft Lease Agreement for this tenant and notify them in their Customer Portal to review and sign.'
+              ? 'Approving this application will automatically generate a draft Supply Contract for this client and notify them in their Customer Portal to review and sign.'
               : 'Declining this application will notify the applicant with your optional notes.'}
           </Typography>
 

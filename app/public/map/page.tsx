@@ -19,7 +19,8 @@ import {
   MyLocation, Search, Visibility, Map as MapIcon, Refresh,
 } from '@mui/icons-material';
 import api from '@/app/utils/api';
-import type { House, PropertyType, PaginationData } from '@/types/houses';
+import { PropertyType } from '@/types/houses';
+import type { House, PaginationData } from '@/types/houses';
 import Link from 'next/link';
 
 // ─── The Leaflet map, isolated and client-only ─────────────────────
@@ -41,13 +42,18 @@ const MapView = dynamic(() => import('@/components/MapView'), {
   ),
 });
 
-const propertyTypeLabels: Record<PropertyType, string> = {
-  [0]: 'Apartment',
-  [1]: 'Villa',
-  [2]: 'Condo',
-  [3]: 'House',
-  [4]: 'Land',
-} as any;
+const propertyTypeLabels: Partial<Record<PropertyType, string>> = {
+  [PropertyType.CONSTRUCTION_MATERIAL]: 'Construction Material',
+  [PropertyType.STRUCTURAL_STEEL]: 'Structural Steel',
+  [PropertyType.CEMENT_CONCRETE]: 'Cement & Concrete',
+  [PropertyType.HOLLOW_BLOCKS]: 'Hollow Concrete Blocks',
+  [PropertyType.ROOFING_SHEETS]: 'Roofing Sheets',
+  [PropertyType.OFFICE_FURNITURE]: 'Office Furniture',
+  [PropertyType.HOME_FURNITURE]: 'Home Furniture',
+  [PropertyType.STEEL_FABRICATION]: 'Steel Fabrication',
+  [PropertyType.GENERAL_CONTRACTING]: 'General Contracting',
+  [PropertyType.CUSTOM_ORDER]: 'Custom Order',
+};
 
 export default function MapViewPage() {
   const { theme } = useTheme();
@@ -639,8 +645,8 @@ export default function MapViewPage() {
 
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: 600, fontSize: 13 }}>
               {isAmharic
-                ? `${pagination.totalItems || houses.length} የሚገኙ ቤቶች ተገኝተዋል`
-                : `Showing ${houses.length} of ${pagination.totalItems} properties`}
+                ? `${pagination.totalItems || houses.length} የሚገኙ ምርቶች ተገኝተዋል`
+                : `Showing ${houses.length} of ${pagination.totalItems} MAT products`}
             </Typography>
 
             {loading ? (
@@ -795,46 +801,15 @@ export default function MapViewPage() {
                                   flexWrap: 'wrap',
                                 }}
                               >
-                                {house.details.bedrooms > 0 && (
-                                  <Box
-                                    sx={{
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: 0.3,
-                                    }}
-                                  >
-                                    <Bed sx={{ fontSize: 13, color: 'text.secondary' }} />
-                                    <Typography variant="caption" sx={{ fontWeight: 600, fontSize: 11 }}>
-                                      {house.details.bedrooms} {isAmharic ? 'መኝታ' : 'beds'}
-                                    </Typography>
-                                  </Box>
-                                )}
-                                {house.details.bathrooms > 0 && (
-                                  <Box
-                                    sx={{
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: 0.3,
-                                    }}
-                                  >
-                                    <Bathtub sx={{ fontSize: 13, color: 'text.secondary' }} />
-                                    <Typography variant="caption" sx={{ fontWeight: 600, fontSize: 11 }}>
-                                      {house.details.bathrooms} {isAmharic ? 'መታጠቢያ' : 'baths'}
-                                    </Typography>
-                                  </Box>
-                                )}
-                                <Box
-                                  sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 0.3,
-                                  }}
-                                >
-                                  <SquareFoot sx={{ fontSize: 13, color: 'text.secondary' }} />
-                                  <Typography variant="caption" sx={{ fontWeight: 600, fontSize: 11 }}>
-                                    {house.details.area} m²
-                                  </Typography>
-                                </Box>
+                                <Chip
+                                  size="small"
+                                  variant="outlined"
+                                  label={house.productAttributes?.sku ? `SKU: ${house.productAttributes.sku}` : 'MAT Verified'}
+                                  sx={{ fontSize: 10, height: 20 }}
+                                />
+                                <Typography variant="caption" sx={{ fontWeight: 600, fontSize: 11, color: 'text.secondary' }}>
+                                  {house.productAttributes?.material || 'Certified Spec'}
+                                </Typography>
                               </Box>
                               <Typography
                                 variant="h6"

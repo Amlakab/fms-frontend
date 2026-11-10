@@ -66,7 +66,7 @@ interface PaginationData {
 
 // ─── Role options ────────────────────────────────────────────────────
 const ROLE_OPTIONS: { value: Role; label: string; icon: React.ReactNode }[] = [
-  { value: 'agent',      label: 'Agent',      icon: <Handshake /> },
+  { value: 'agent',      label: 'Sales Staff (የሽያጭ ሰራተኛ)',      icon: <Handshake /> },
 ];
 
 const UsersPage = () => {
