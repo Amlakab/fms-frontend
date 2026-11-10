@@ -158,6 +158,25 @@ const EditHousePage = () => {
       downPaymentMin: 20,
     },
 
+    productAttributes: {
+      sku: '',
+      brand: 'MAT Engineering & Trading PLC',
+      material: '',
+      grade: '',
+      woodType: '',
+      fabric: '',
+      colorFinish: '',
+      roomType: 'Home / Office Furniture',
+      assemblyRequired: false,
+      dimensions: '',
+      unit: 'Pcs',
+      weight: '',
+      stockQuantity: 100,
+      leadTime: 'Immediate / In Stock',
+      warranty: '1 Year Manufacturer Warranty',
+      specifications: '',
+    },
+
     videoUrl: '',
     panoramic360Url: '',
     panoramic360Caption: '360° Virtual Tour View',
@@ -250,6 +269,28 @@ const EditHousePage = () => {
           escrowSupported: house.saleTerms?.escrowSupported ?? true,
           downPaymentMin: house.saleTerms?.downPaymentMin ?? 20,
         },
+        productAttributes: {
+          sku: house.productAttributes?.sku || '',
+          brand: house.productAttributes?.brand || 'MAT Engineering & Trading PLC',
+          material: house.productAttributes?.material || '',
+          grade: house.productAttributes?.grade || '',
+          woodType: house.productAttributes?.woodType || '',
+          fabric: house.productAttributes?.fabric || '',
+          colorFinish: house.productAttributes?.colorFinish || '',
+          roomType: house.productAttributes?.roomType || 'Home / Office Furniture',
+          assemblyRequired: !!house.productAttributes?.assemblyRequired,
+          dimensions: house.productAttributes?.dimensions || '',
+          unit: house.productAttributes?.unit || 'Pcs',
+          weight: house.productAttributes?.weight || '',
+          stockQuantity: house.productAttributes?.stockQuantity ?? 100,
+          leadTime: house.productAttributes?.leadTime || 'Immediate / In Stock',
+          warranty: house.productAttributes?.warranty || '1 Year Manufacturer Warranty',
+          specifications: typeof house.productAttributes?.specifications === 'string'
+            ? house.productAttributes.specifications
+            : Array.isArray(house.productAttributes?.specifications)
+            ? (house.productAttributes.specifications as any[]).map((s: any) => `${s.key}: ${s.value}`).join(', ')
+            : '',
+        },
         videoUrl: house.videoUrl || '',
         panoramic360Url: house.panoramic360?.imageUrl || '',
         panoramic360Caption:
@@ -293,6 +334,16 @@ const EditHousePage = () => {
       ...prev,
       [section]: {
         ...(prev[section as keyof typeof prev] as object),
+        [field]: value,
+      },
+    }));
+  };
+
+  const handleProductAttrChange = (field: string, value: any) => {
+    setFormData((prev) => ({
+      ...prev,
+      productAttributes: {
+        ...prev.productAttributes,
         [field]: value,
       },
     }));
@@ -375,6 +426,7 @@ const EditHousePage = () => {
       // JSON blobs
       fd.append('location', JSON.stringify(formData.location));
       fd.append('details', JSON.stringify(formData.details));
+      fd.append('productAttributes', JSON.stringify(formData.productAttributes));
       fd.append('pricing', JSON.stringify(formData.pricing));
       fd.append('virtualTour', JSON.stringify(formData.virtualTour));
       if (formData.videoUrl) fd.append('videoUrl', formData.videoUrl);
@@ -560,6 +612,192 @@ const EditHousePage = () => {
         InputProps={{ startAdornment: <TagIcon sx={{ mr: 1, color: isDark ? '#38bdf8' : '#2563eb' }} /> }}
         sx={textFieldStyle}
       />
+
+      {/* ─── MAT Engineering & Furniture Product Attributes ─── */}
+      <Box
+        sx={{
+          p: 2.5,
+          borderRadius: 2.5,
+          border: `1px solid ${isDark ? '#233554' : '#cbd5e1'}`,
+          bgcolor: isDark ? '#0a192f' : '#f8fafc',
+        }}
+      >
+        <Typography
+          variant="subtitle1"
+          sx={{
+            fontWeight: 700,
+            color: isDark ? '#38bdf8' : '#2563eb',
+            mb: 2,
+          }}
+        >
+          {isAmharic ? 'የማት ኢንጂነሪንግ እና ፈርኒቸር ዝርዝር መረጃዎች' : 'MAT Engineering & Furniture Specifications'}
+        </Typography>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="SKU / Item Code"
+              value={formData.productAttributes.sku}
+              onChange={(e) => handleProductAttrChange('sku', e.target.value)}
+              placeholder="e.g. MAT-FRN-101"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Brand / Manufacturer"
+              value={formData.productAttributes.brand}
+              onChange={(e) => handleProductAttrChange('brand', e.target.value)}
+              placeholder="e.g. MAT Engineering & Trading PLC"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Material"
+              value={formData.productAttributes.material}
+              onChange={(e) => handleProductAttrChange('material', e.target.value)}
+              placeholder="e.g. Solid Wood, Steel Frame, Velvet"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Wood / Timber Type (Furniture)"
+              value={formData.productAttributes.woodType}
+              onChange={(e) => handleProductAttrChange('woodType', e.target.value)}
+              placeholder="e.g. Solid Mahogany, Oak, Teak, Wanza, MDF"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Fabric & Upholstery"
+              value={formData.productAttributes.fabric}
+              onChange={(e) => handleProductAttrChange('fabric', e.target.value)}
+              placeholder="e.g. Genuine Leather, Velvet, Ergonomic Mesh"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Color & Finish"
+              value={formData.productAttributes.colorFinish}
+              onChange={(e) => handleProductAttrChange('colorFinish', e.target.value)}
+              placeholder="e.g. Walnut Stain, Natural Teak, Matte Black"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Room / Usage Category"
+              value={formData.productAttributes.roomType}
+              onChange={(e) => handleProductAttrChange('roomType', e.target.value)}
+              placeholder="e.g. Living Room, Executive Office, Dining Room"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Quality Grade / Standard"
+              value={formData.productAttributes.grade}
+              onChange={(e) => handleProductAttrChange('grade', e.target.value)}
+              placeholder="e.g. Commercial Grade A / ASTM A615"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Dimensions / Size"
+              value={formData.productAttributes.dimensions}
+              onChange={(e) => handleProductAttrChange('dimensions', e.target.value)}
+              placeholder="e.g. 200x90x75 cm or 12mm x 12m"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Unit of Measure"
+              value={formData.productAttributes.unit}
+              onChange={(e) => handleProductAttrChange('unit', e.target.value)}
+              placeholder="e.g. Pcs, Set, Ton, Meter"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Weight / Density"
+              value={formData.productAttributes.weight}
+              onChange={(e) => handleProductAttrChange('weight', e.target.value)}
+              placeholder="e.g. 45 kg / set"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              type="number"
+              label="Available Stock Quantity"
+              value={formData.productAttributes.stockQuantity}
+              onChange={(e) => handleProductAttrChange('stockQuantity', parseInt(e.target.value) || 0)}
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Lead Time / Availability"
+              value={formData.productAttributes.leadTime}
+              onChange={(e) => handleProductAttrChange('leadTime', e.target.value)}
+              placeholder="e.g. Immediate / 3-5 Business Days"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '220px' }}>
+            <TextField
+              fullWidth
+              label="Warranty Terms"
+              value={formData.productAttributes.warranty}
+              onChange={(e) => handleProductAttrChange('warranty', e.target.value)}
+              placeholder="e.g. 1 Year Manufacturer Warranty"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 2, minWidth: '280px' }}>
+            <TextField
+              fullWidth
+              label="Technical Specifications / Notes"
+              value={formData.productAttributes.specifications}
+              onChange={(e) => handleProductAttrChange('specifications', e.target.value)}
+              placeholder="e.g. High-density foam, kiln-dried timber, scratch-resistant coating"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+      </Box>
 
       <Box
         sx={{

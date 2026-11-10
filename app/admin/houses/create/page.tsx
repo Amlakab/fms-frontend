@@ -162,6 +162,11 @@ const CreateHousePage = () => {
       brand: 'MAT Engineering & Trading PLC',
       material: '',
       grade: '',
+      woodType: '',
+      fabric: '',
+      colorFinish: '',
+      roomType: 'Home / Office Furniture',
+      assemblyRequired: false,
       dimensions: '',
       unit: 'Pcs',
       weight: '',
@@ -505,10 +510,53 @@ const CreateHousePage = () => {
           <Box sx={{ flex: 1, minWidth: '180px' }}>
             <TextField
               fullWidth
+              label="Wood / Timber Type (Furniture)"
+              value={formData.productAttributes.woodType}
+              onChange={(e) => handleProductAttrChange('woodType', e.target.value)}
+              placeholder="e.g. Solid Mahogany, Oak, Teak, Wanza, MDF"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Fabric & Upholstery"
+              value={formData.productAttributes.fabric}
+              onChange={(e) => handleProductAttrChange('fabric', e.target.value)}
+              placeholder="e.g. Genuine Leather, Velvet, Ergonomic Mesh"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Color & Finish"
+              value={formData.productAttributes.colorFinish}
+              onChange={(e) => handleProductAttrChange('colorFinish', e.target.value)}
+              placeholder="e.g. Walnut Stain, Natural Teak, Matte Black"
+              sx={textFieldStyle}
+            />
+          </Box>
+        </Box>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
+              label="Room / Usage Category"
+              value={formData.productAttributes.roomType}
+              onChange={(e) => handleProductAttrChange('roomType', e.target.value)}
+              placeholder="e.g. Living Room, Executive Office, Dining Room"
+              sx={textFieldStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: '180px' }}>
+            <TextField
+              fullWidth
               label="Quality Grade / Standard"
               value={formData.productAttributes.grade}
               onChange={(e) => handleProductAttrChange('grade', e.target.value)}
-              placeholder="e.g. ASTM A615 Grade 60"
+              placeholder="e.g. Commercial Grade A / ASTM A615"
               sx={textFieldStyle}
             />
           </Box>
@@ -518,7 +566,7 @@ const CreateHousePage = () => {
               label="Dimensions / Size"
               value={formData.productAttributes.dimensions}
               onChange={(e) => handleProductAttrChange('dimensions', e.target.value)}
-              placeholder="e.g. 12mm x 12m or 200cm x 160cm x 75cm"
+              placeholder="e.g. 200x90x75 cm or 12mm x 12m"
               sx={textFieldStyle}
             />
           </Box>

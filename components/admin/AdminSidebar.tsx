@@ -99,14 +99,14 @@ export default function AdminSidebar({
   const translateMenuName = (name: string): string => {
     const lower = name.toLowerCase();
     if (!isAmharic) {
-      if (lower === 'agents' || lower === 'agent') return 'Sales Staff';
-      if (lower === 'houses' || lower === 'house') return 'Products';
-      if (lower === 'approve house' || lower === 'approve houses') return 'Approve Products';
+      if (lower === 'agents' || lower === 'agent' || lower.includes('sales')) return 'Sales Staff';
+      if (lower === 'houses' || lower === 'house' || lower.includes('furniture') || lower === 'products') return 'Furniture & Products';
+      if (lower === 'approve house' || lower === 'approve houses' || lower.includes('approve')) return 'Approve Products';
       return name;
     }
     if (lower.includes('dashboard')) return 'ዳሽቦርድ';
     if (lower.includes('user')) return 'ተጠቃሚዎች';
-    if (lower.includes('house') || lower.includes('propert')) return 'ምርቶች';
+    if (lower.includes('house') || lower.includes('propert') || lower.includes('furnitur')) return 'ፈርኒቸር እና ምርቶች';
     if (lower.includes('transaction')) return 'የገንዘብ ዝውውሮች';
     if (lower.includes('order')) return 'ትዕዛዞች';
     if (lower.includes('message')) return 'መልዕክቶች';

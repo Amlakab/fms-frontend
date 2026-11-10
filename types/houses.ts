@@ -180,13 +180,19 @@ export interface House {
     subCategory?: string;
     material?: string;
     grade?: string;
+    woodType?: string;
+    fabric?: string;
+    colorFinish?: string;
+    assemblyRequired?: boolean;
+    roomType?: string;
     dimensions?: string;
     unit?: string;
     weight?: string;
     stockQuantity?: number;
     leadTime?: string;
+    leadTimeDays?: number;
     warranty?: string;
-    specifications?: Array<{ key: string; value: string }>;
+    specifications?: any;
   };
   pricing: Pricing;
   rentalPricing?: {

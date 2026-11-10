@@ -66,13 +66,13 @@ interface PaginationData {
 
 // ─── Role options ────────────────────────────────────────────────────
 const ROLE_OPTIONS: { value: Role; label: string; icon: React.ReactNode }[] = [
-  { value: 'user',       label: 'User',       icon: <Person /> },
-  { value: 'customer',   label: 'Customer',   icon: <PersonPin /> },
-  { value: 'manager',    label: 'Manager',    icon: <SupervisorAccount /> },
-  { value: 'accountant', label: 'Accountant', icon: <AccountCircle /> },
-  { value: 'admin',      label: 'Admin',      icon: <AdminPanelSettings /> },
-  { value: 'owner',      label: 'Owner',      icon: <Business /> },
-  { value: 'agent',      label: 'Agent',      icon: <Handshake /> },
+  { value: 'user',       label: 'User',                       icon: <Person /> },
+  { value: 'customer',   label: 'Customer',                   icon: <PersonPin /> },
+  { value: 'manager',    label: 'Manager',                    icon: <SupervisorAccount /> },
+  { value: 'accountant', label: 'Accountant',                 icon: <AccountCircle /> },
+  { value: 'admin',      label: 'Admin',                      icon: <AdminPanelSettings /> },
+  { value: 'owner',      label: 'Owner / General Manager',     icon: <Business /> },
+  { value: 'agent',      label: 'Sales Staff (የሽያጭ ሰራተኛ)',   icon: <Handshake /> },
 ];
 
 const UsersPage = () => {
@@ -453,6 +453,17 @@ const UsersPage = () => {
   const getRoleIcon = (role: string): ReactElement => {
     const opt = ROLE_OPTIONS.find((r) => r.value === role);
     return (opt?.icon as ReactElement) ?? <Person />;
+  };
+
+  const getRoleLabel = (role: string) => {
+    if (role === 'agent') return isAmharic ? 'የሽያጭ ሰራተኛ' : 'Sales Staff';
+    if (role === 'owner') return isAmharic ? 'ስራ አስኪያጅ' : 'Owner / GM';
+    if (role === 'admin') return isAmharic ? 'አድሚን' : 'Admin';
+    if (role === 'manager') return isAmharic ? 'ማኔጀር' : 'Manager';
+    if (role === 'accountant') return isAmharic ? 'አካውንታንት' : 'Accountant';
+    if (role === 'customer') return isAmharic ? 'ደንበኛ' : 'Customer';
+    if (role === 'user') return isAmharic ? 'ተጠቃሚ' : 'User';
+    return role;
   };
 
   const getAvatarColor = (userId: string) => {
@@ -876,7 +887,7 @@ const UsersPage = () => {
                               {user.name}
                             </Typography>
                             <Chip
-                              label={user.role}
+                              label={getRoleLabel(user.role)}
                               color={getRoleColor(user.role)}
                               size="small"
                               icon={getRoleIcon(user.role)}
@@ -1197,7 +1208,7 @@ const UsersPage = () => {
                           </TableCell>
                           <TableCell sx={{ py: 2.5 }}>
                             <Chip
-                              label={user.role}
+                              label={getRoleLabel(user.role)}
                               color={getRoleColor(user.role)}
                               size="small"
                               icon={getRoleIcon(user.role)}

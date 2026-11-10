@@ -448,6 +448,17 @@ const UsersPage = () => {
     return (opt?.icon as ReactElement) ?? <Person />;
   };
 
+  const getRoleLabel = (role: string) => {
+    if (role === 'agent') return isAmharic ? 'የሽያጭ ሰራተኛ' : 'Sales Staff';
+    if (role === 'owner') return isAmharic ? 'ስራ አስኪያጅ' : 'Owner / GM';
+    if (role === 'admin') return isAmharic ? 'አድሚን' : 'Admin';
+    if (role === 'manager') return isAmharic ? 'ማኔጀር' : 'Manager';
+    if (role === 'accountant') return isAmharic ? 'አካውንታንት' : 'Accountant';
+    if (role === 'customer') return isAmharic ? 'ደንበኛ' : 'Customer';
+    if (role === 'user') return isAmharic ? 'ተጠቃሚ' : 'User';
+    return role;
+  };
+
   const getAvatarColor = (userId: string) => {
     const colors = [
       '#1976d2', '#2e7d32', '#ed6c02', '#d32f2f', '#7b1fa2',
@@ -659,7 +670,7 @@ const UsersPage = () => {
                     gap: 1,
                   }}
                 >
-                  <FilterList /> Agent Filters
+                  <FilterList /> {isAmharic ? 'የሽያጭ ሰራተኞች ማጣሪያ' : 'Sales Staff Filters'}
                 </Typography>
 
                 <Box
@@ -703,7 +714,7 @@ const UsersPage = () => {
                       },
                     }}
                   >
-                    Add Agent
+                    {isAmharic ? 'አዲስ የሽያጭ ሰራተኛ ጨምር' : 'Add Sales Staff'}
                   </Button>
                 </Box>
               </Box>
@@ -869,7 +880,7 @@ const UsersPage = () => {
                               {user.name}
                             </Typography>
                             <Chip
-                              label={user.role}
+                              label={getRoleLabel(user.role)}
                               color={getRoleColor(user.role)}
                               size="small"
                               icon={getRoleIcon(user.role)}
@@ -1190,7 +1201,7 @@ const UsersPage = () => {
                           </TableCell>
                           <TableCell sx={{ py: 2.5 }}>
                             <Chip
-                              label={user.role}
+                              label={getRoleLabel(user.role)}
                               color={getRoleColor(user.role)}
                               size="small"
                               icon={getRoleIcon(user.role)}
@@ -1436,7 +1447,7 @@ const UsersPage = () => {
               variant="h6"
               sx={{ fontWeight: 'bold', color: theme === 'dark' ? '#ccd6f6' : '#333333' }}
             >
-              Add New Agent
+              {isAmharic ? 'አዲስ የሽያጭ ሰራተኛ መመዝገቢያ' : 'Add New Sales Staff'}
             </Typography>
           </DialogTitle>
           <DialogContent sx={{ p: 3 }}>
@@ -1592,7 +1603,7 @@ const UsersPage = () => {
                 },
               }}
             >
-              Create Agent
+              {isAmharic ? 'የሽያጭ ሰራተኛ መዝግብ' : 'Create Sales Staff'}
             </Button>
           </DialogActions>
         </Dialog>

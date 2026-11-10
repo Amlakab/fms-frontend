@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: '/', label: t('nav.home', 'Home') },
-    { href: '/public/houses', label: t('nav.properties', 'Products & Materials') },
+    { href: '/public/furniture', label: t('nav.properties', 'Furniture & Products') },
     { href: '/public/map', label: t('nav.map_search', 'Showroom Map') },
     { href: '/admin/customer', label: t('nav.my_portal', 'Customer Portal') },
     { href: '/about', label: t('nav.about', 'About Us') },
